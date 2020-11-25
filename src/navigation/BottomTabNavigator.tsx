@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 
+import { AppContext } from 'context';
 import { BottomTabRoutes } from 'types';
 import theme from 'theme';
 import { Icon } from 'components';
@@ -10,6 +13,26 @@ import SendParcelNavigator from './SendParcelNavigator';
 const BottomTab = createBottomTabNavigator<BottomTabRoutes>();
 
 const BottomTabNavigator = () => {
+  const { state } = useContext(AppContext);
+  const navigator = useNavigation();
+
+  const getNotificationRoute = useCallback(async () => {
+    try {
+      const notification = state.notification.notification;
+      Alert.alert(notification?.body || '');
+      const route = state.notification.data?.route;
+      if (route) {
+        navigator.navigate(route);
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  }, [navigator, state]);
+
+  useEffect(() => {
+    getNotificationRoute();
+  }, [getNotificationRoute]);
+
   return (
     <BottomTab.Navigator
       initialRouteName="MyParcels"

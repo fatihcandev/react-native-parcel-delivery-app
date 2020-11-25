@@ -4,8 +4,8 @@ import { BarCodeReadEvent, RNCamera } from 'react-native-camera';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Box } from 'components';
 import { RootStack, StackNavigationProps } from 'types';
+import { Box } from 'components';
 
 const Camera = ({ navigation }: StackNavigationProps<RootStack, 'Camera'>) => {
   const ref = useRef<RNCamera>(null);

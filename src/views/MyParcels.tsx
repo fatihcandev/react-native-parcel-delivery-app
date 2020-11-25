@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackScreenProps } from '@react-navigation/stack';
 import Animated, {
   Easing,
   interpolate,
   useValue,
 } from 'react-native-reanimated';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { RootStack } from 'types';
 import {
   Box,
   Icon,
@@ -15,9 +19,6 @@ import {
   IconButton,
   StyledButton,
 } from 'components';
-import { StackScreenProps } from '@react-navigation/stack';
-import { RootStack } from 'types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
   const [trackingNumber, setTrackingNumber] = useState<string>('');
@@ -27,7 +28,6 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
 
   useEffect(() => {
     async function getTrackingNumberFromQr() {
-      console.log('getting tracking number from qr...');
       const trackingNumberFromQr = await AsyncStorage.getItem(
         'trackingNumberFromQr',
       );

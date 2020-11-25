@@ -1,13 +1,71 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import messaging from '@react-native-firebase/messaging';
 
+import { AppContext, SET_NOTIFICATION_ROUTE } from 'context';
 import { RootStack } from 'types';
-import BottomTabNavigator from './BottomTabNavigator';
 import { Camera } from 'views';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createStackNavigator<RootStack>();
 
 const Navigator = () => {
+  const { dispatch } = useContext(AppContext);
+  const [notificationPermitted, setNotificationPermitted] = useState<boolean>(
+    false,
+  );
+
+  useEffect(() => {
+    async function getPermission() {
+      const authStatus = await messaging().requestPermission();
+      const permitted =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      setNotificationPermitted(permitted);
+      if (permitted) {
+        const fcmToken = await messaging().getToken();
+        console.log('Your Firebase Token is:', fcmToken);
+        console.log('Authorization status:', authStatus);
+      }
+    }
+
+    getPermission();
+  }, []);
+
+  useEffect(() => {
+    async function getBgNotificationRoute() {
+      if (notificationPermitted) {
+        messaging().onNotificationOpenedApp(async notification => {
+          dispatch({
+            type: SET_NOTIFICATION_ROUTE,
+            data: {
+              notification,
+            },
+          });
+        });
+      }
+    }
+
+    getBgNotificationRoute();
+  }, [notificationPermitted, dispatch]);
+
+  useEffect(() => {
+    async function getQuitStateNotificationRoute() {
+      if (notificationPermitted) {
+        const notification = await messaging().getInitialNotification();
+        if (notification !== null) {
+          dispatch({
+            type: SET_NOTIFICATION_ROUTE,
+            data: {
+              notification,
+            },
+          });
+        }
+      }
+    }
+
+    getQuitStateNotificationRoute();
+  }, [notificationPermitted, dispatch]);
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Root" component={BottomTabNavigator} />
