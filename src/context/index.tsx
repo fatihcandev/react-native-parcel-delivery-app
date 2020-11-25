@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
-export const SET_NOTIFICATION_ROUTE = 'SET_NOTIFICATION_ROUTE';
+export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
 
 interface IAppState {
   notification: FirebaseMessagingTypes.RemoteMessage;
@@ -23,7 +23,7 @@ export interface IContext<T> {
 const AppContext = React.createContext(initialState);
 const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
   switch (action.type) {
-    case SET_NOTIFICATION_ROUTE:
+    case SET_NOTIFICATION_DATA:
       return {
         ...state,
         notification: action.data?.notification!,
