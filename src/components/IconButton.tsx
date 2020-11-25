@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import Box from './Box';
 import Icon from './Icon';
@@ -11,7 +11,7 @@ interface IIconButtonProps {
 
 const IconButton: React.FC<IIconButtonProps> = ({ icon, onPress }) => {
   return (
-    <TouchableOpacity {...{ onPress }}>
+    <TouchableWithoutFeedback {...{ onPress }}>
       <Box
         width={50}
         height={50}
@@ -21,7 +21,7 @@ const IconButton: React.FC<IIconButtonProps> = ({ icon, onPress }) => {
         alignItems="center">
         <Icon name={icon} color="black" />
       </Box>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 
 import StyledText from './StyledText';
 import Box from './Box';
@@ -15,7 +15,7 @@ const StyledButton: React.FC<IStyledButtonProps> = ({
   children,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <RectButton onPress={onPress}>
       <Box
         width="100%"
         height={48}
@@ -32,7 +32,7 @@ const StyledButton: React.FC<IStyledButtonProps> = ({
           children
         )}
       </Box>
-    </TouchableOpacity>
+    </RectButton>
   );
 };
 
