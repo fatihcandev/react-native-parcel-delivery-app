@@ -14,12 +14,12 @@
     "paths": {
       "*": ["src/*"],
       "@assets/*": ["src/assets/*"],
-      "@utils/*": ["src/utils/*"],
-      "@components/*": ["src/components/*"],
-      "@icons/*": ["src/components/assets/icons/"],
-      "@brands/*": ["src/components/assets/brands/"],
-      "@illustrations/*": ["src/components/assets/illustrations/"],
-      "@views/*": ["src/views/*"]
+      "@utils": ["src/utils"],
+      "@components": ["src/components"],
+      "@views": ["src/views"],
+      "@icons": ["src/components/assets/icons"],
+      "@brands": ["src/components/assets/brands"],
+      "@illustrations": ["src/components/assets/illustrations"]
     }
   },
   "exclude": [
@@ -27,8 +27,6 @@
     "babel.config.js",
     "metro.config.js",
     "react-native.config.js",
-    ".svgorc.json",
-    ".svgrrc.json",
     "jest.config.js"
   ]
 }
