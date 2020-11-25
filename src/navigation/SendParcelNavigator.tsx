@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SendParcelRoutes } from 'types';
-import { Checkout, DeliveryMethod, ParcelSize } from '@views/SendParcel';
+import { Checkout, DeliveryMethod, ParcelSize } from 'views/SendParcel';
 
 const SendParcelStack = createStackNavigator<SendParcelRoutes>();
 

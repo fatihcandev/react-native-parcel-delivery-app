@@ -44,10 +44,11 @@ const StyledInput: React.FC<IStyledInputProps> = ({
         height={50}
         backgroundColor="white"
         padding="m"
-        color={isSearch ? 'greyLight' : 'black'}
+        color="black"
         borderWidth={isSearch ? 0 : 1}
         borderColor={focused ? 'black' : 'grey'}
         borderRadius="s"
+        placeholderTextColor="grey"
         {...{ placeholder, value, onChangeText, onFocus, onBlur }}
       />
     </Box>

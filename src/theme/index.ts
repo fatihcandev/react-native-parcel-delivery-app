@@ -2,6 +2,7 @@ import { createTheme } from '@shopify/restyle';
 
 const theme = createTheme({
   colors: {
+    transparent: 'transparent',
     black: '#111111',
     white: '#FFFFFF',
     yellow: '#FFD64D',
@@ -68,6 +69,7 @@ const theme = createTheme({
     xs: 2.5,
     s: 4,
     l: 16,
+    cameraShutter: 37.5,
   },
   breakpoints: {
     phone: 0,

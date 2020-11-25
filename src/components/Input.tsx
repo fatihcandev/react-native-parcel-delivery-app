@@ -1,4 +1,4 @@
-import { TextInput } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 import {
   backgroundColor,
   BackgroundColorProps,
@@ -17,7 +17,8 @@ import {
 } from '@shopify/restyle';
 import { Theme } from 'theme';
 
-type InputProps = SpacingProps<Theme> &
+type InputProps = TextInputProps &
+  SpacingProps<Theme> &
   BackgroundColorProps<Theme> &
   ColorProps<Theme> &
   BorderProps<Theme> &
