@@ -1,0 +1,12 @@
+export { default as ArrowDown } from './ArrowDown';
+export { default as ArrowRight } from './ArrowRight';
+export { default as Close } from './Close';
+export { default as Courier } from './Courier';
+export { default as Delivery } from './Delivery';
+export { default as MyParcels } from './MyParcels';
+export { default as ParcelCenter } from './ParcelCenter';
+export { default as PinEmpty } from './PinEmpty';
+export { default as PinTruck } from './PinTruck';
+export { default as QrCode } from './QrCode';
+export { default as SendParcels } from './SendParcels';
+export { default as Truck } from './Truck';

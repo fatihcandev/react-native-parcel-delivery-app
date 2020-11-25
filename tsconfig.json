@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"],
+      "@icons/*": ["src/components/assets/icons/"],
+      "@brands/*": ["src/components/assets/brands/"],
+      "@illustrations/*": ["src/components/assets/illustrations/"],
+      "@views/*": ["src/views/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "react-native.config.js",
+    ".svgorc.json",
+    ".svgrrc.json",
+    "jest.config.js"
+  ]
+}
