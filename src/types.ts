@@ -11,6 +11,7 @@ export interface StackNavigationProps<
 
 export type RootStack = {
   Root: undefined;
+  Camera: undefined;
 };
 
 export type BottomTabRoutes = {

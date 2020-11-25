@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, {
@@ -15,12 +15,29 @@ import {
   IconButton,
   StyledButton,
 } from 'components';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStack } from 'types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const MyParcels = () => {
+const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
   const [trackingNumber, setTrackingNumber] = useState<string>('');
   const [topBarExpanded, setTopBarExpanded] = useState<boolean>(false);
   const topBarHeightValue = useValue(120);
   const arrowRotateValue = useValue(0);
+
+  useEffect(() => {
+    async function getTrackingNumberFromQr() {
+      console.log('getting tracking number from qr...');
+      const trackingNumberFromQr = await AsyncStorage.getItem(
+        'trackingNumberFromQr',
+      );
+      if (trackingNumberFromQr !== null) {
+        setTrackingNumber(trackingNumberFromQr);
+      }
+    }
+
+    getTrackingNumberFromQr();
+  }, []);
 
   const AnimatedBox = Animated.createAnimatedComponent(Box);
   const { timing } = Animated;
@@ -66,21 +83,21 @@ const MyParcels = () => {
           alignItems="center"
           marginBottom="xxl"
           marginTop="xl">
-          <Box flexDirection="row">
-            <StyledText variant="h1" marginRight="s">
-              Track parcel
-            </StyledText>
+          <Box flexDirection="row" alignItems="center">
+            <StyledText variant="h1">Track parcel</StyledText>
             <TouchableWithoutFeedback onPress={handleExpandShrink}>
-              <Animated.View
-                style={{
-                  transform: [
-                    {
-                      rotate: arrowRotationDeg,
-                    },
-                  ],
-                }}>
-                <Icon name="arrowDown" color="black" />
-              </Animated.View>
+              <Box padding="s">
+                <Animated.View
+                  style={{
+                    transform: [
+                      {
+                        rotate: arrowRotationDeg,
+                      },
+                    ],
+                  }}>
+                  <Icon name="arrowDown" color="black" />
+                </Animated.View>
+              </Box>
             </TouchableWithoutFeedback>
           </Box>
           <Avatar src={require('assets/images/avatar.png')} />
@@ -100,7 +117,10 @@ const MyParcels = () => {
                   onChangeText={v => setTrackingNumber(v)}
                 />
               </Box>
-              <IconButton icon="qrCode" onPress={() => true} />
+              <IconButton
+                icon="qrCode"
+                onPress={() => navigation.navigate('Camera')}
+              />
             </Box>
           </Box>
           <Box>
