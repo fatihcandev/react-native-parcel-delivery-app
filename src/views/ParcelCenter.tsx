@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { Box, StyledText } from 'components';
+import { Layout } from 'components';
 
 const ParcelCenter = () => {
-  return (
-    <Box justifyContent="center" alignItems="center">
-      <StyledText variant="h2">Parcel Center</StyledText>
-    </Box>
-  );
+  return <Layout headingBig="Parcel centers" />;
 };
 
 export default ParcelCenter;

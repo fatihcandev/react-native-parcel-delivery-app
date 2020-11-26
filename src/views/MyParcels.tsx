@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import Animated, {
@@ -21,6 +20,7 @@ import {
   IconButton,
   StyledButton,
   MyParcelCard,
+  Layout,
 } from 'components';
 
 const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
@@ -132,21 +132,14 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
           </Box>
         </Box>
       </AnimatedBox>
-      <ScrollView style={{ flex: 1 }}>
-        <Box paddingVertical="xl" paddingHorizontal="l">
-          <StyledText variant="h3" marginBottom="m">
-            My parcels
-          </StyledText>
-          {myParcelsData.map(
-            ({ id, company, status, lastUpdate, progress }) => (
-              <MyParcelCard
-                key={id}
-                {...{ id, company, status, lastUpdate, progress }}
-              />
-            ),
-          )}
-        </Box>
-      </ScrollView>
+      <Layout headingSmall="My parcels">
+        {myParcelsData.map(({ id, company, status, lastUpdate, progress }) => (
+          <MyParcelCard
+            key={id}
+            {...{ id, company, status, lastUpdate, progress }}
+          />
+        ))}
+      </Layout>
     </SafeAreaView>
   );
 };

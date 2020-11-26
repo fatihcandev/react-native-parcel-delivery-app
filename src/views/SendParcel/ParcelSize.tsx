@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { Box, StyledText } from 'components';
+import { Layout } from 'components';
 
 const ParcelSize = () => {
-  return (
-    <Box justifyContent="center" alignItems="center">
-      <StyledText variant="h2">Send Parcel</StyledText>
-    </Box>
-  );
+  return <Layout headingBig="Send parcel" headingSmall="Parcel size" />;
 };
 
 export default ParcelSize;
