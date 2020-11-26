@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IconName } from 'types';
-import * as Icons from '@icons/';
+import * as Icons from '@icons';
 
 interface IIconProps {
   name: string;

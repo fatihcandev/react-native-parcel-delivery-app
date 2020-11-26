@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { AssetName } from 'types';
-import * as Brands from '@brands/';
-import * as Illustrations from '@illustrations/';
+import * as Brands from '@brands';
+import * as Illustrations from '@illustrations';
 
 interface IAssetProps {
   name: string;
-  width?: string | number;
-  height?: string | number;
+  width?: number;
+  height?: number;
 }
 
 const Asset: React.FC<IAssetProps> = ({ name, ...rest }) => {

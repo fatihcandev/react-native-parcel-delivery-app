@@ -1,30 +1,16 @@
 import * as React from 'react';
-import Svg, { SvgProps, Path, Defs, Pattern, Use } from 'react-native-svg';
+import { Image } from 'react-native';
+import { Box } from 'components';
 
-function SvgAliExpress(props: SvgProps) {
+function ImageAliExpress(props: any) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      fill="none"
-      viewBox="0 0 78 31"
-      className=""
-      {...props}>
-      <Path fill="url(#AliExpress_svg__pattern0)" d="M0 0h78v31H0z" />
-      <Defs>
-        <Pattern
-          id="AliExpress_svg__pattern0"
-          width={1}
-          height={1}
-          patternContentUnits="objectBoundingBox">
-          <Use
-            transform="scale(.0008 .002)"
-            xlinkHref="#AliExpress_svg__image0"
-          />
-        </Pattern>
-      </Defs>
-    </Svg>
+    <Box {...props}>
+      <Image
+        style={{ width: '100%', height: '100%', resizeMode: 'contain' }}
+        source={require('assets/images/brands/aliexpress.png')}
+      />
+    </Box>
   );
 }
 
-export default SvgAliExpress;
+export default ImageAliExpress;
