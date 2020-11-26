@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Image } from 'react-native';
-import { Box } from 'components';
+
+import Box from 'components/Box';
 
 function ImageZalando(props: any) {
   return (

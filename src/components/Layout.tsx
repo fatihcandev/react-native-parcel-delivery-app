@@ -1,7 +1,8 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { Box, StyledText } from 'components';
+import Box from './Box';
+import StyledText from './StyledText';
 
 interface ILayoutProps {
   headingBig?: string;

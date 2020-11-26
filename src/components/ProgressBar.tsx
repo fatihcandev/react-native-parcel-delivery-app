@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from 'components';
+import Box from './Box';
 interface IProgressBarProps {
   progress: number;
 }

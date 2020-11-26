@@ -1,7 +1,9 @@
 import React from 'react';
 import { RectButton } from 'react-native-gesture-handler';
 
-import { Box, StyledText } from 'components';
+import Box from './Box';
+import StyledText from './StyledText';
+
 interface IStyledButtonProps {
   label?: string;
   onPress: () => void;
