@@ -1,3 +1,4 @@
+export { default as NotificationHandler } from './NotificationHandler';
 export { default as Box } from './Box';
 export { default as Input } from './Input';
 export { default as StyledText } from './StyledText';

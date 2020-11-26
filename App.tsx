@@ -6,6 +6,7 @@ import { ThemeProvider } from '@shopify/restyle';
 import { AppProvider } from 'context';
 import Navigator from 'navigation';
 import theme from 'theme';
+import { NotificationHandler } from 'components';
 
 const App = () => {
   return (
@@ -13,7 +14,10 @@ const App = () => {
       <ThemeProvider {...{ theme }}>
         <SafeAreaProvider>
           <NavigationContainer>
-            <Navigator />
+            <>
+              <Navigator />
+              <NotificationHandler />
+            </>
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>
