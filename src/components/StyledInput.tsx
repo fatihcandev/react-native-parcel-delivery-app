@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Box from './Box';
-import Input from './Input';
-import StyledText from './StyledText';
+
+import { Box, Input, StyledText } from 'components';
 
 interface IStyledInputProps {
   type: 'default' | 'search';

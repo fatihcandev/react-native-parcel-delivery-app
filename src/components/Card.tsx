@@ -8,7 +8,7 @@ import {
 import React from 'react';
 
 import { Theme } from 'theme';
-import Box from './Box';
+import { Box } from 'components';
 
 type ICardProps = LayoutProps<Theme> & SpacingProps<Theme>;
 

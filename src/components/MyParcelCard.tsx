@@ -1,13 +1,7 @@
 import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 
-import { Icon } from 'components';
-import Card from './Card';
-import Box from './Box';
-import StyledText from './StyledText';
-import Asset from './Asset';
-import ProgressBar from './ProgressBar';
-
+import { Card, Box, StyledText, ProgressBar, Asset, Icon } from 'components';
 interface IMyParcelCardProps {
   id: string;
   company: string;

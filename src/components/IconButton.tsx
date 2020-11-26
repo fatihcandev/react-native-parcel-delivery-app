@@ -1,9 +1,7 @@
 import React from 'react';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-import Box from './Box';
-import Icon from './Icon';
-
+import { Box, Icon } from 'components';
 interface IIconButtonProps {
   icon: string;
   onPress: () => void;
