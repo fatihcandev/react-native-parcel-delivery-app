@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import messaging from '@react-native-firebase/messaging';
 
-import { AppContext, SET_NOTIFICATION_ROUTE } from 'context';
+import { AppContext, SET_NOTIFICATION_DATA } from 'context';
 import { RootStack } from 'types';
 import { Camera } from 'views';
 import BottomTabNavigator from './BottomTabNavigator';
@@ -37,7 +37,7 @@ const Navigator = () => {
       if (notificationPermitted) {
         messaging().onNotificationOpenedApp(async notification => {
           dispatch({
-            type: SET_NOTIFICATION_ROUTE,
+            type: SET_NOTIFICATION_DATA,
             data: {
               notification,
             },
@@ -55,7 +55,7 @@ const Navigator = () => {
         const notification = await messaging().getInitialNotification();
         if (notification !== null) {
           dispatch({
-            type: SET_NOTIFICATION_ROUTE,
+            type: SET_NOTIFICATION_DATA,
             data: {
               notification,
             },
