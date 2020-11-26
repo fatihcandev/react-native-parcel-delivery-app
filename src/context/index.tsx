@@ -3,9 +3,11 @@ import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
 export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
+export const TAP_NOTIFICATION = 'TAP_NOTIFICATION';
 
 interface IAppState {
   notification?: FirebaseMessagingTypes.RemoteMessage;
+  notificationTapped?: boolean;
 }
 export interface IAction<T> {
   type: string;
@@ -14,6 +16,7 @@ export interface IAction<T> {
 const initialState: IContext<IAppState> = {
   state: {
     notification: {},
+    notificationTapped: false,
   },
   dispatch: (_value: IAction<IAppState>) => null,
 };
@@ -29,10 +32,16 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
         ...state,
         notification: action.data?.notification!,
       };
+    case TAP_NOTIFICATION:
+      return {
+        ...state,
+        notificationTapped: true,
+      };
     case CLEAR_NOTIFICATION_DATA:
       return {
         ...state,
         notification: {},
+        notificationTapped: false,
       };
     default:
       return state;

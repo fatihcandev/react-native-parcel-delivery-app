@@ -1,13 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import messaging from '@react-native-firebase/messaging';
 
-import { AppContext, SET_NOTIFICATION_DATA } from 'context';
+import {
+  AppContext,
+  CLEAR_NOTIFICATION_DATA,
+  SET_NOTIFICATION_DATA,
+} from 'context';
+import Notification from './Notification';
 
 const NotificationHandler = () => {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const [notificationPermitted, setNotificationPermitted] = useState<boolean>(
     false,
   );
+  let notificationDetails = state.notification?.notification!;
 
   useEffect(() => {
     async function getPermission() {
@@ -19,7 +25,6 @@ const NotificationHandler = () => {
       if (permitted) {
         const fcmToken = await messaging().getToken();
         console.log('Your Firebase Token is:', fcmToken);
-        console.log('Authorization status:', authStatus);
       }
     }
 
@@ -27,9 +32,9 @@ const NotificationHandler = () => {
   }, []);
 
   useEffect(() => {
-    async function getBackgroundNotification() {
+    function getBackgroundNotification() {
       if (notificationPermitted) {
-        messaging().onNotificationOpenedApp(async notification => {
+        messaging().onNotificationOpenedApp(notification => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -47,7 +52,10 @@ const NotificationHandler = () => {
     async function getQuitStateNotification() {
       if (notificationPermitted) {
         const notification = await messaging().getInitialNotification();
-        if (notification !== null) {
+        if (
+          notification !== null &&
+          notification.messageType !== 'foreground'
+        ) {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -61,7 +69,43 @@ const NotificationHandler = () => {
     getQuitStateNotification();
   }, [notificationPermitted, dispatch]);
 
-  return null;
+  useEffect(() => {
+    async function getForegroundNotification() {
+      if (notificationPermitted) {
+        messaging().onMessage(async notification => {
+          dispatch({
+            type: SET_NOTIFICATION_DATA,
+            data: {
+              notification: {
+                ...notification,
+                messageType: 'foreground',
+              },
+            },
+          });
+        });
+      }
+    }
+
+    getForegroundNotification();
+  }, [notificationPermitted, dispatch]);
+
+  useEffect(() => {
+    if (notificationDetails) {
+      const timeout = setTimeout(() => {
+        dispatch({
+          type: CLEAR_NOTIFICATION_DATA,
+        });
+      }, 4000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [dispatch, notificationDetails]);
+
+  return notificationDetails ? (
+    <Notification {...{ notificationDetails }} />
+  ) : null;
 };
 
 export default NotificationHandler;
