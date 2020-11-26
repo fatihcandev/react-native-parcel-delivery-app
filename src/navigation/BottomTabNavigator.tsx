@@ -16,18 +16,16 @@ const BottomTabNavigator = () => {
   const { state } = useContext(AppContext);
   const navigator = useNavigation();
 
-  const getNotificationRoute = useCallback(async () => {
-    try {
-      const notification = state.notification.notification;
-      Alert.alert(notification?.body || '');
-      const route = state.notification.data?.route;
-      if (route) {
-        navigator.navigate(route);
-      }
-    } catch (error) {
-      console.warn(error);
+  const getNotificationRoute = useCallback(() => {
+    const route = state.notification.data?.route;
+    const text = state.notification.notification?.body;
+    if (route) {
+      navigator.navigate(route);
     }
-  }, [navigator, state]);
+    if (text) {
+      Alert.alert(text);
+    }
+  }, [navigator, state.notification.data, state.notification.notification]);
 
   useEffect(() => {
     getNotificationRoute();
