@@ -1,9 +1,8 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import { Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 
-import { AppContext } from 'context';
+import { AppContext, CLEAR_NOTIFICATION_DATA } from 'context';
 import { BottomTabRoutes } from 'types';
 import theme from 'theme';
 import { Icon } from 'components';
@@ -13,19 +12,18 @@ import SendParcelNavigator from './SendParcelNavigator';
 const BottomTab = createBottomTabNavigator<BottomTabRoutes>();
 
 const BottomTabNavigator = () => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const navigator = useNavigation();
 
   const getNotificationRoute = useCallback(() => {
-    const route = state.notification.data?.route;
-    const text = state.notification.notification?.body;
+    const route = state.notification?.data?.route;
     if (route) {
       navigator.navigate(route);
+      dispatch({
+        type: CLEAR_NOTIFICATION_DATA,
+      });
     }
-    if (text) {
-      Alert.alert(text);
-    }
-  }, [navigator, state.notification.data, state.notification.notification]);
+  }, [dispatch, navigator, state.notification]);
 
   useEffect(() => {
     getNotificationRoute();

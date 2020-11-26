@@ -2,9 +2,10 @@ import React, { useReducer } from 'react';
 import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
+export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
 
 interface IAppState {
-  notification: FirebaseMessagingTypes.RemoteMessage;
+  notification?: FirebaseMessagingTypes.RemoteMessage;
 }
 export interface IAction<T> {
   type: string;
@@ -27,6 +28,11 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
       return {
         ...state,
         notification: action.data?.notification!,
+      };
+    case CLEAR_NOTIFICATION_DATA:
+      return {
+        ...state,
+        notification: {},
       };
     default:
       return state;

@@ -33,7 +33,7 @@ const Navigator = () => {
   }, []);
 
   useEffect(() => {
-    async function getBgNotificationRoute() {
+    async function getBackgroundNotification() {
       if (notificationPermitted) {
         messaging().onNotificationOpenedApp(async notification => {
           dispatch({
@@ -46,11 +46,11 @@ const Navigator = () => {
       }
     }
 
-    getBgNotificationRoute();
+    getBackgroundNotification();
   }, [notificationPermitted, dispatch]);
 
   useEffect(() => {
-    async function getQuitStateNotificationRoute() {
+    async function getQuitStateNotification() {
       if (notificationPermitted) {
         const notification = await messaging().getInitialNotification();
         if (notification !== null) {
@@ -64,8 +64,9 @@ const Navigator = () => {
       }
     }
 
-    getQuitStateNotificationRoute();
+    getQuitStateNotification();
   }, [notificationPermitted, dispatch]);
+
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Root" component={BottomTabNavigator} />
