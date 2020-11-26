@@ -39,6 +39,9 @@ export enum IconName {
   qrCode = 'qrCode',
   sendParcels = 'sendParcels',
   truck = 'truck',
+  turn = 'turn',
+  camera = 'camera',
+  videoCamera = 'videoCamera',
 }
 
 export enum AssetName {

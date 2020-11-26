@@ -10,3 +10,6 @@ export { default as PinTruck } from './PinTruck';
 export { default as QrCode } from './QrCode';
 export { default as SendParcels } from './SendParcels';
 export { default as Truck } from './Truck';
+export { default as Turn } from './Turn';
+export { default as Camera } from './Camera';
+export { default as VideoCamera } from './VideoCamera';

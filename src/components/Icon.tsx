@@ -34,6 +34,12 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.SendParcels {...rest} />;
     case IconName.truck:
       return <Icons.Truck {...rest} />;
+    case IconName.turn:
+      return <Icons.Turn {...rest} />;
+    case IconName.camera:
+      return <Icons.Camera {...rest} />;
+    case IconName.videoCamera:
+      return <Icons.VideoCamera {...rest} />;
     default:
       return null;
   }

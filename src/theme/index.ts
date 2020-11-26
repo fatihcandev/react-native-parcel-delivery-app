@@ -5,6 +5,7 @@ const theme = createTheme({
     transparent: 'transparent',
     black: '#111111',
     white: '#FFFFFF',
+    red: '#D71E24',
     yellow: '#FFD64D',
     yellowDark: '#FDAD27',
     grey: '#C4C4C4',
@@ -76,6 +77,7 @@ const theme = createTheme({
     s: 4,
     l: 16,
     cameraShutter: 37.5,
+    cameraShutterRedDot: 18.75,
   },
   breakpoints: {
     phone: 0,

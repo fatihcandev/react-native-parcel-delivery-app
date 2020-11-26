@@ -70,9 +70,9 @@ const NotificationHandler = () => {
   }, [notificationPermitted, dispatch]);
 
   useEffect(() => {
-    async function getForegroundNotification() {
+    function getForegroundNotification() {
       if (notificationPermitted) {
-        messaging().onMessage(async notification => {
+        messaging().onMessage(notification => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {

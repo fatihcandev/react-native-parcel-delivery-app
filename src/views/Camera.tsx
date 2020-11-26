@@ -1,20 +1,74 @@
-import React, { useRef } from 'react';
-import { Dimensions } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Dimensions,
+  PermissionsAndroid,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera';
+import CameraRoll from '@react-native-community/cameraroll';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { RootStack, StackNavigationProps } from 'types';
-import { Box } from 'components';
+import { Box, Icon } from 'components';
 
-const Camera = ({ navigation }: StackNavigationProps<RootStack, 'Camera'>) => {
+const Camera = () => {
+  const [cameraType, setCameraType] = useState<'back' | 'front'>('back');
+  const [videoMode, setVideoMode] = useState<boolean>(false);
+  const [hasSavePermission, setHasSavePermission] = useState<boolean>(false);
+  const navigator = useNavigation();
   const ref = useRef<RNCamera>(null);
-  const { width, height } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   const handleQrRead = async (e: BarCodeReadEvent) => {
-    await AsyncStorage.setItem('trackingNumberFromQr', e.data, () => {
-      navigation.replace('Root');
+    const number = e.data;
+    await AsyncStorage.setItem('trackingNumberFromQr', number, () => {
+      navigator.navigate('MyParcels');
     });
+  };
+
+  useEffect(() => {
+    async function getPermission() {
+      const readPermission =
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+      const writePermission =
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+      const hasReadPermission = await PermissionsAndroid.check(readPermission);
+      const hasWritePermission = await PermissionsAndroid.check(
+        writePermission,
+      );
+      if (hasReadPermission && hasWritePermission) {
+        setHasSavePermission(true);
+      } else {
+        const readStatus = await PermissionsAndroid.request(readPermission);
+        const writeStatus = await PermissionsAndroid.request(writePermission);
+        setHasSavePermission(
+          readStatus === 'granted' && writeStatus === 'granted',
+        );
+      }
+    }
+
+    getPermission();
+  }, []);
+
+  const takePicture = async () => {
+    const pic = await ref.current?.takePictureAsync({
+      quality: 0.5,
+      base64: false,
+    });
+    if (hasSavePermission && pic) {
+      const res = await CameraRoll.save(pic.uri);
+      console.log(res);
+    }
+  };
+
+  const toggleCameraMode = () => {
+    setVideoMode(!videoMode);
+  };
+
+  const toggleCameraType = () => {
+    setCameraType(cameraType === 'back' ? 'front' : 'back');
   };
 
   return (
@@ -23,7 +77,7 @@ const Camera = ({ navigation }: StackNavigationProps<RootStack, 'Camera'>) => {
         <RNCamera
           {...{ ref }}
           style={{ flex: 1 }}
-          type={RNCamera.Constants.Type.back}
+          type={cameraType}
           androidCameraPermissionOptions={{
             title: 'Permission to use camera',
             message: 'We need your permission to use your camera',
@@ -34,60 +88,43 @@ const Camera = ({ navigation }: StackNavigationProps<RootStack, 'Camera'>) => {
           onBarCodeRead={handleQrRead}
         />
         <Box
-          justifyContent="center"
-          alignItems="center"
           position="absolute"
-          {...{ width, height }}>
-          <Box width={width * 0.75} height={height * 0.375} position="relative">
-            <Box
-              width={50}
-              height={50}
-              position="absolute"
-              top={0}
-              left={0}
-              borderTopLeftRadius="s"
-              borderLeftWidth={2}
-              borderTopWidth={2}
-              borderLeftColor="white"
-              borderTopColor="white"
+          bottom={16}
+          {...{ width }}
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-evenly">
+          <TouchableWithoutFeedback onPress={toggleCameraMode}>
+            <Icon
+              name={videoMode ? 'camera' : 'videoCamera'}
+              color="white"
+              width="40"
+              height="40"
             />
+          </TouchableWithoutFeedback>
+          <TouchableOpacity onPress={takePicture}>
             <Box
-              width={50}
-              height={50}
-              position="absolute"
-              top={0}
-              right={0}
-              borderTopRightRadius="s"
-              borderRightWidth={2}
-              borderTopWidth={2}
-              borderRightColor="white"
-              borderTopColor="white"
-            />
-            <Box
-              width={50}
-              height={50}
-              position="absolute"
-              bottom={0}
-              right={0}
-              borderBottomRightRadius="s"
-              borderRightWidth={2}
-              borderBottomWidth={2}
-              borderRightColor="white"
-              borderBottomColor="white"
-            />
-            <Box
-              width={50}
-              height={50}
-              position="absolute"
-              bottom={0}
-              left={0}
-              borderBottomLeftRadius="s"
-              borderLeftWidth={2}
-              borderBottomWidth={2}
-              borderLeftColor="white"
-              borderBottomColor="white"
-            />
-          </Box>
+              position="relative"
+              width={75}
+              height={75}
+              backgroundColor="white"
+              borderRadius="cameraShutter"
+              justifyContent="center"
+              alignItems="center">
+              {videoMode && (
+                <Box
+                  position="absolute"
+                  width={37.5}
+                  height={37.5}
+                  backgroundColor="red"
+                  borderRadius="cameraShutterRedDot"
+                />
+              )}
+            </Box>
+          </TouchableOpacity>
+          <TouchableWithoutFeedback onPress={toggleCameraType}>
+            <Icon name="turn" color="white" width="40" height="40" />
+          </TouchableWithoutFeedback>
         </Box>
       </Box>
     </SafeAreaView>
