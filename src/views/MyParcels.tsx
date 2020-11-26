@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import Animated, {
@@ -10,6 +11,7 @@ import Animated, {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { RootStack } from 'types';
+import myParcelsData from 'data/myParcelsData';
 import {
   Box,
   Icon,
@@ -18,6 +20,7 @@ import {
   Avatar,
   IconButton,
   StyledButton,
+  MyParcelCard,
 } from 'components';
 
 const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
@@ -73,6 +76,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
       <AnimatedBox
         height={topBarHeightValue}
         padding="l"
+        justifyContent="space-between"
         backgroundColor="yellow"
         borderBottomLeftRadius="l"
         borderBottomRightRadius="l"
@@ -81,7 +85,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
-          marginBottom="xxl"
+          marginBottom="xl"
           marginTop="xl">
           <Box flexDirection="row" alignItems="center">
             <StyledText variant="h1">Track parcel</StyledText>
@@ -128,9 +132,21 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
           </Box>
         </Box>
       </AnimatedBox>
-      <Box paddingVertical="xl" paddingHorizontal="l">
-        <StyledText variant="h3">My parcels</StyledText>
-      </Box>
+      <ScrollView style={{ flex: 1 }}>
+        <Box paddingVertical="xl" paddingHorizontal="l">
+          <StyledText variant="h3" marginBottom="m">
+            My parcels
+          </StyledText>
+          {myParcelsData.map(
+            ({ id, company, status, lastUpdate, progress }) => (
+              <MyParcelCard
+                key={id}
+                {...{ id, company, status, lastUpdate, progress }}
+              />
+            ),
+          )}
+        </Box>
+      </ScrollView>
     </SafeAreaView>
   );
 };

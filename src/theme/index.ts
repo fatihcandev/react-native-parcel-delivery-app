@@ -46,6 +46,12 @@ const theme = createTheme({
       lineHeight: 18,
       color: 'black',
     },
+    bodyPrimaryBold: {
+      fontFamily: 'Poppins-Bold',
+      fontSize: 12,
+      lineHeight: 18,
+      color: 'black',
+    },
     bodySecondary: {
       fontFamily: 'Poppins-Medium',
       fontSize: 10,
@@ -53,7 +59,7 @@ const theme = createTheme({
       color: 'black',
     },
     link: {
-      fontFamily: 'Poppins-Medium',
+      fontFamily: 'Poppins-Bold',
       fontSize: 9,
       lineHeight: 13.5,
       color: 'black',

@@ -8,3 +8,4 @@ export { default as StyledButton } from './StyledButton';
 export { default as IconButton } from './IconButton';
 export { default as Avatar } from './Avatar';
 export { default as ProgressBar } from './ProgressBar';
+export { default as MyParcelCard } from './MyParcelCard';

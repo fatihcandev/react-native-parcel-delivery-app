@@ -3,13 +3,17 @@ import React from 'react';
 import Box from './Box';
 
 interface IProgressBarProps {
-  value: number;
+  progress: number;
 }
 
-const ProgressBar: React.FC<IProgressBarProps> = ({ value }) => {
+const ProgressBar: React.FC<IProgressBarProps> = ({ progress }) => {
   return (
-    <Box backgroundColor="white" height={5} borderRadius="xs" overflow="hidden">
-      <Box width={`${value}%`} backgroundColor="yellow" />
+    <Box
+      backgroundColor="greyLighter"
+      height={5}
+      borderRadius="xs"
+      overflow="hidden">
+      <Box width={`${progress}%`} height={5} backgroundColor="yellow" />
     </Box>
   );
 };
