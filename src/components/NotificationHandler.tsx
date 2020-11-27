@@ -8,7 +8,7 @@ import {
 } from 'context';
 import Notification from './Notification';
 
-const NotificationHandler = () => {
+const NotificationHandler: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
   const [notificationPermitted, setNotificationPermitted] = useState<boolean>(
     false,

@@ -26,8 +26,10 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.MyParcels {...rest} />;
     case IconName.parcelCenter:
       return <Icons.ParcelCenter {...rest} />;
-    case IconName.pinEmpty:
+    case IconName.pinTruck:
       return <Icons.PinTruck {...rest} />;
+    case IconName.pinEmpty:
+      return <Icons.PinEmpty {...rest} />;
     case IconName.qrCode:
       return <Icons.QrCode {...rest} />;
     case IconName.sendParcels:

@@ -78,6 +78,7 @@ const theme = createTheme({
     l: 16,
     cameraShutter: 37.5,
     cameraShutterRedDot: 18.75,
+    parcelStep: 22,
   },
   breakpoints: {
     phone: 0,
