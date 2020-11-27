@@ -16,6 +16,8 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.ArrowDown {...rest} />;
     case IconName.arrowRight:
       return <Icons.ArrowRight {...rest} />;
+    case IconName.arrowLeft:
+      return <Icons.ArrowLeft {...rest} />;
     case IconName.close:
       return <Icons.Close {...rest} />;
     case IconName.courier:
@@ -42,6 +44,12 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.Camera {...rest} />;
     case IconName.videoCamera:
       return <Icons.VideoCamera {...rest} />;
+    case IconName.gallery:
+      return <Icons.Gallery {...rest} />;
+    case IconName.upload:
+      return <Icons.Upload {...rest} />;
+    case IconName.check:
+      return <Icons.Check {...rest} />;
     default:
       return null;
   }

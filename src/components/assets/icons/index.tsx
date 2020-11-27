@@ -1,5 +1,6 @@
 export { default as ArrowDown } from './ArrowDown';
 export { default as ArrowRight } from './ArrowRight';
+export { default as ArrowLeft } from './ArrowLeft';
 export { default as Close } from './Close';
 export { default as Courier } from './Courier';
 export { default as Delivery } from './Delivery';
@@ -13,3 +14,6 @@ export { default as Truck } from './Truck';
 export { default as Turn } from './Turn';
 export { default as Camera } from './Camera';
 export { default as VideoCamera } from './VideoCamera';
+export { default as Gallery } from './Gallery';
+export { default as Upload } from './Upload';
+export { default as Check } from './Check';
