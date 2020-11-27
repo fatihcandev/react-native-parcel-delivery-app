@@ -26,6 +26,20 @@ export type SendParcelRoutes = {
   Checkout: undefined;
 };
 
+export interface IParcelStatus {
+  icon: string;
+  label: string;
+  date: string;
+}
+
+export interface IParcelDetails {
+  id: string;
+  company: string;
+  status: IParcelStatus[];
+  lastUpdate: string;
+  progress: number;
+}
+
 export enum IconName {
   arrowDown = 'arrowDown',
   arrowRight = 'arrowRight',

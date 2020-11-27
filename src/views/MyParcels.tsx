@@ -21,11 +21,14 @@ import {
   StyledButton,
   MyParcelCard,
   Layout,
+  ActionSheet,
+  AnimatedBox,
 } from 'components';
 
 const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
   const [trackingNumber, setTrackingNumber] = useState<string>('');
   const [topBarExpanded, setTopBarExpanded] = useState<boolean>(false);
+  const [openDetails, setOpenDetails] = useState<boolean>(false);
   const topBarHeightValue = useValue(120);
   const arrowRotateValue = useValue(0);
 
@@ -42,7 +45,6 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
     getTrackingNumberFromQr();
   }, []);
 
-  const AnimatedBox = Animated.createAnimatedComponent(Box);
   const { timing } = Animated;
 
   const animConfig = {
@@ -60,19 +62,21 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
     toValue: topBarExpanded ? 0 : 1,
   };
 
+  const arrowRotationDeg = interpolate(arrowRotateValue, {
+    inputRange: [0, 1],
+    outputRange: ['0deg', '180deg'],
+  });
+
   const handleExpandShrink = () => {
     timing(topBarHeightValue, topBarAnim).start();
     timing(arrowRotateValue, arrowIconAnim).start();
     setTopBarExpanded(s => !s);
   };
 
-  const arrowRotationDeg = interpolate(arrowRotateValue, {
-    inputRange: [0, 1],
-    outputRange: ['0deg', '180deg'],
-  });
+  const toggleDetails = () => setOpenDetails(s => !s);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, position: 'relative' }}>
       <AnimatedBox
         height={topBarHeightValue}
         padding="l"
@@ -133,13 +137,15 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         </Box>
       </AnimatedBox>
       <Layout headingSmall="My parcels">
-        {myParcelsData.map(({ id, company, status, lastUpdate, progress }) => (
+        {myParcelsData.map(parcelDetails => (
           <MyParcelCard
-            key={id}
-            {...{ id, company, status, lastUpdate, progress }}
+            key={parcelDetails.id}
+            {...{ parcelDetails }}
+            onDetailsPress={toggleDetails}
           />
         ))}
       </Layout>
+      {openDetails && <ActionSheet onClosePress={toggleDetails} />}
     </SafeAreaView>
   );
 };

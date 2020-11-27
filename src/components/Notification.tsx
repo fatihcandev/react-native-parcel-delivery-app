@@ -5,6 +5,7 @@ import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 import { AppContext, TAP_NOTIFICATION } from 'context';
 import Box from './Box';
+import AnimatedBox from './AnimatedBox';
 import StyledText from './StyledText';
 
 //TODO Enchane the notification UI
@@ -20,7 +21,6 @@ const Notification: React.FC<INotificationProps> = ({
   const { timing } = Animated;
   const top = useValue(-80);
   const opacity = useValue(1);
-  const AnimatedBox = Animated.createAnimatedComponent(Box);
 
   const animConfig = {
     duration: 500,

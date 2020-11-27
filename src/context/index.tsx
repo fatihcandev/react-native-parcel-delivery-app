@@ -1,13 +1,16 @@
 import React, { useReducer } from 'react';
 import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import { IParcelDetails } from 'types';
 
 export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
-export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
 export const TAP_NOTIFICATION = 'TAP_NOTIFICATION';
+export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
+export const SET_PARCEL_DETAILS = 'SET_PARCEL_DETAILS';
 
 interface IAppState {
   notification?: FirebaseMessagingTypes.RemoteMessage;
   notificationTapped?: boolean;
+  parcelDetails?: IParcelDetails;
 }
 export interface IAction<T> {
   type: string;
@@ -17,6 +20,13 @@ const initialState: IContext<IAppState> = {
   state: {
     notification: {},
     notificationTapped: false,
+    parcelDetails: {
+      id: '',
+      company: '',
+      status: [],
+      lastUpdate: '',
+      progress: 0,
+    },
   },
   dispatch: (_value: IAction<IAppState>) => null,
 };
@@ -30,7 +40,7 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
     case SET_NOTIFICATION_DATA:
       return {
         ...state,
-        notification: action.data?.notification!,
+        notification: action.data?.notification,
       };
     case TAP_NOTIFICATION:
       return {
@@ -42,6 +52,11 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
         ...state,
         notification: {},
         notificationTapped: false,
+      };
+    case SET_PARCEL_DETAILS:
+      return {
+        ...state,
+        parcelDetails: action.data?.parcelDetails,
       };
     default:
       return state;
