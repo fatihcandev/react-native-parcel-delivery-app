@@ -50,6 +50,8 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.Upload {...rest} />;
     case IconName.check:
       return <Icons.Check {...rest} />;
+    case IconName.trash:
+      return <Icons.Trash {...rest} />;
     default:
       return null;
   }
