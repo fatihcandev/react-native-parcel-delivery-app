@@ -17,7 +17,7 @@ const Loading: React.FC<ILoadingProps> = ({ fullScreen }) => {
       style={{ ...StyleSheet.absoluteFillObject }}
       justifyContent="center"
       alignItems="center"
-      backgroundColor={fullScreen ? 'tabBarIconInactive' : 'transparent'}>
+      backgroundColor={fullScreen ? 'overlay' : 'transparent'}>
       <ActivityIndicator color={theme.colors.yellowDark} size="large" />
     </Box>
   );
