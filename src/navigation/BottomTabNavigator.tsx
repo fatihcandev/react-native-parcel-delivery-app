@@ -7,6 +7,7 @@ import { useNavigateFromNotification } from 'utils';
 import { Icon } from 'components';
 import { MyParcels, ParcelCenter } from 'views';
 import SendParcelNavigator from './SendParcelNavigator';
+import GalleryNavigator from './GalleryNavigator';
 
 const BottomTab = createBottomTabNavigator<BottomTabRoutes>();
 
@@ -56,6 +57,14 @@ const BottomTabNavigator = () => {
             <Icon name="parcelCenter" {...{ color }} />
           ),
           tabBarLabel: 'Parcel center',
+        }}
+      />
+      <BottomTab.Screen
+        name="Gallery"
+        component={GalleryNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <Icon name="gallery" {...{ color }} />,
+          tabBarLabel: 'Gallery',
         }}
       />
     </BottomTab.Navigator>

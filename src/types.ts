@@ -18,12 +18,18 @@ export type BottomTabRoutes = {
   MyParcels: undefined;
   SendParcel: undefined;
   ParcelCenter: undefined;
+  Gallery: undefined;
 };
 
 export type SendParcelRoutes = {
   ParcelSize: undefined;
   DeliveryMethod: undefined;
   Checkout: undefined;
+};
+
+export type GalleryRoutes = {
+  Gallery: undefined;
+  CloudGallery: undefined;
 };
 
 export interface IParcelStatus {
@@ -40,9 +46,15 @@ export interface IParcelDetails {
   progress: number;
 }
 
+export interface IPicture {
+  fileName: string;
+  uri: string;
+}
+
 export enum IconName {
   arrowDown = 'arrowDown',
   arrowRight = 'arrowRight',
+  arrowLeft = 'arrowLeft',
   close = 'close',
   courier = 'courier',
   delivery = 'delivery',
@@ -56,6 +68,10 @@ export enum IconName {
   turn = 'turn',
   camera = 'camera',
   videoCamera = 'videoCamera',
+  gallery = 'gallery',
+  upload = 'upload',
+  check = 'check',
+  trash = 'trash',
 }
 
 export enum AssetName {
