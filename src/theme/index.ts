@@ -13,6 +13,7 @@ const theme = createTheme({
     greyLighter: '#F8F8F8',
     tabBarIconInactive: 'rgba(17, 17, 17, 0.3)',
     shadow: 'rgba(230, 230, 230, 0.5)',
+    overlay: 'rgba(0, 0, 0, 0.5)',
   },
   spacing: {
     s: 8,
@@ -79,6 +80,7 @@ const theme = createTheme({
     cameraShutter: 37.5,
     cameraShutterRedDot: 18.75,
     parcelStep: 22,
+    FAB: 25,
   },
   breakpoints: {
     phone: 0,
