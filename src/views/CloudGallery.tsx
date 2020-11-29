@@ -32,7 +32,7 @@ const Gallery = () => {
               const fileName = uploadedPicsJson[pic].fileName;
               const ref = storage().ref(`images/${fileName}`);
               const uri = await ref.getDownloadURL();
-              setPictures((prev) => [
+              setPictures(prev => [
                 ...prev,
                 {
                   fileName,
@@ -56,19 +56,19 @@ const Gallery = () => {
 
   const togglePreviewMode = () => {
     setPicNum(previewMode ? 4 : 1);
-    setPreviewMode((s) => !s);
+    setPreviewMode(s => !s);
   };
 
   const renderPicture = (pic: IPicture) => {
     const handlePress = () => {
       if (showPicMenu) {
         if (selectedPictures.has(pic)) {
-          setSelectedPictures((prev) => {
+          setSelectedPictures(prev => {
             prev.delete(pic);
             return new Set(prev);
           });
         } else {
-          setSelectedPictures((prev) => new Set(prev.add(pic)));
+          setSelectedPictures(prev => new Set(prev.add(pic)));
         }
       } else {
         togglePreviewMode();
@@ -76,7 +76,7 @@ const Gallery = () => {
     };
 
     const handleLongPress = () => {
-      setSelectedPictures((prev) => new Set(prev.add(pic)));
+      setSelectedPictures(prev => new Set(prev.add(pic)));
       setShowPicMenu(true);
     };
     return (
@@ -93,8 +93,7 @@ const Gallery = () => {
               style={StyleSheet.absoluteFill}
               backgroundColor="overlay"
               justifyContent="center"
-              alignItems="center"
-            >
+              alignItems="center">
               <Icon name="check" color="white" />
             </Box>
           )}
@@ -143,8 +142,7 @@ const Gallery = () => {
                 backgroundColor="yellowDark"
                 flexDirection="row"
                 alignItems="center"
-                elevation={4}
-              >
+                elevation={4}>
                 <TouchableOpacity onPress={() => navigator.goBack()}>
                   <Box marginRight="s">
                     <Icon name="arrowLeft" color="black" />

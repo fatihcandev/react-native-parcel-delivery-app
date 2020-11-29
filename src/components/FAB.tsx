@@ -19,8 +19,7 @@ const FAB: React.FC<IFABProps> = ({ icon, onPress }) => {
       {...{ width }}
       flexDirection="row"
       justifyContent="flex-end"
-      alignItems="center"
-    >
+      alignItems="center">
       <TouchableOpacity {...{ onPress }}>
         <Box
           width={75}
@@ -29,8 +28,7 @@ const FAB: React.FC<IFABProps> = ({ icon, onPress }) => {
           alignItems="center"
           backgroundColor="yellowDark"
           borderRadius="cameraShutter"
-          elevation={2}
-        >
+          elevation={2}>
           <Icon name={icon} color="white" width="30" height="30" />
         </Box>
       </TouchableOpacity>

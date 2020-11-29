@@ -19,8 +19,7 @@ const StyledButton: React.FC<IStyledButtonProps> = ({ onPress, label, children }
         backgroundColor="black"
         justifyContent="center"
         alignItems="center"
-        borderRadius="s"
-      >
+        borderRadius="s">
         {label ? (
           <StyledText variant="button" color="white">
             {label}

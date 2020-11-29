@@ -64,10 +64,10 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
   const handleExpandShrink = () => {
     timing(topBarHeightValue, topBarAnim).start();
     timing(arrowRotateValue, arrowIconAnim).start();
-    setTopBarExpanded((s) => !s);
+    setTopBarExpanded(s => !s);
   };
 
-  const toggleDetails = () => setOpenDetails((s) => !s);
+  const toggleDetails = () => setOpenDetails(s => !s);
 
   return (
     <SafeAreaView style={{ flex: 1, position: 'relative' }}>
@@ -78,15 +78,13 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         backgroundColor="yellow"
         borderBottomLeftRadius="l"
         borderBottomRightRadius="l"
-        overflow="hidden"
-      >
+        overflow="hidden">
         <Box
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
           marginBottom="xl"
-          marginTop="xl"
-        >
+          marginTop="xl">
           <Box flexDirection="row" alignItems="center">
             <StyledText variant="h1">Track parcel</StyledText>
             <TouchableWithoutFeedback onPress={handleExpandShrink}>
@@ -98,8 +96,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
                         rotate: arrowRotationDeg,
                       },
                     ],
-                  }}
-                >
+                  }}>
                   <Icon name="arrowDown" color="black" />
                 </Animated.View>
               </Box>
@@ -119,7 +116,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
                   type="search"
                   placeholder="tracking number"
                   value={trackingNumber}
-                  onChangeText={(v) => setTrackingNumber(v)}
+                  onChangeText={v => setTrackingNumber(v)}
                 />
               </Box>
               <IconButton icon="qrCode" onPress={() => navigation.navigate('Camera')} />
@@ -131,7 +128,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         </Box>
       </AnimatedBox>
       <Layout headingSmall="My parcels">
-        {myParcelsData.map((parcelDetails) => (
+        {myParcelsData.map(parcelDetails => (
           <MyParcelCard
             key={parcelDetails.id}
             {...{ parcelDetails }}

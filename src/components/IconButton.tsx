@@ -18,8 +18,7 @@ const IconButton: React.FC<IIconButtonProps> = ({ icon, onPress }) => {
         borderRadius="s"
         backgroundColor="white"
         justifyContent="center"
-        alignItems="center"
-      >
+        alignItems="center">
         <Icon name={icon} color="black" />
       </Box>
     </TouchableWithoutFeedback>

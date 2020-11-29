@@ -11,8 +11,7 @@ const UploadIndicator: React.FC = () => {
       style={StyleSheet.absoluteFill}
       backgroundColor="overlay"
       justifyContent="center"
-      alignItems="center"
-    >
+      alignItems="center">
       <Box
         width={width - 32}
         height={100}
@@ -20,8 +19,7 @@ const UploadIndicator: React.FC = () => {
         alignItems="center"
         padding="l"
         backgroundColor="white"
-        borderRadius="s"
-      >
+        borderRadius="s">
         <Box marginRight="s">
           <ActivityIndicator color={theme.colors.yellowDark} size="large" />
         </Box>

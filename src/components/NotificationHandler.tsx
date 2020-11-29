@@ -28,7 +28,7 @@ const NotificationHandler: React.FC = () => {
   useEffect(() => {
     function getBackgroundNotification() {
       if (notificationPermitted) {
-        messaging().onNotificationOpenedApp((notification) => {
+        messaging().onNotificationOpenedApp(notification => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -63,7 +63,7 @@ const NotificationHandler: React.FC = () => {
   useEffect(() => {
     function getForegroundNotification() {
       if (notificationPermitted) {
-        messaging().onMessage((notification) => {
+        messaging().onMessage(notification => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {

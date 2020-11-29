@@ -72,7 +72,7 @@ const Gallery = () => {
           first: 4,
           include: ['filename'],
         });
-        const picsUriArr = pics.edges.map((e) => {
+        const picsUriArr = pics.edges.map(e => {
           const { filename, uri } = e.node.image;
           return {
             fileName: filename,
@@ -94,18 +94,18 @@ const Gallery = () => {
 
   const togglePreviewMode = () => {
     setPicNum(previewMode ? 4 : 1);
-    setPreviewMode((s) => !s);
+    setPreviewMode(s => !s);
   };
 
   const handlePress = (pic: IPicture) => {
     if (showPicMenu) {
       if (selectedPictures.has(pic)) {
-        setSelectedPictures((prev) => {
+        setSelectedPictures(prev => {
           prev.delete(pic);
           return new Set(prev);
         });
       } else {
-        setSelectedPictures((prev) => new Set(prev.add(pic)));
+        setSelectedPictures(prev => new Set(prev.add(pic)));
       }
     } else {
       togglePreviewMode();
@@ -114,7 +114,7 @@ const Gallery = () => {
 
   const renderPicture = (pic: IPicture) => {
     const handleLongPress = () => {
-      setSelectedPictures((prev) => new Set(prev.add(pic)));
+      setSelectedPictures(prev => new Set(prev.add(pic)));
       setShowPicMenu(true);
     };
     return (
@@ -131,8 +131,7 @@ const Gallery = () => {
               style={StyleSheet.absoluteFill}
               backgroundColor="overlay"
               justifyContent="center"
-              alignItems="center"
-            >
+              alignItems="center">
               <Icon name="check" color="white" />
             </Box>
           )}
@@ -186,8 +185,7 @@ const Gallery = () => {
                   backgroundColor="yellowDark"
                   flexDirection="row"
                   alignItems="center"
-                  elevation={4}
-                >
+                  elevation={4}>
                   <StyledText variant="h3">Gallery</StyledText>
                   <Box flex={1} flexDirection="row" justifyContent="flex-end">
                     {showPicMenu && (

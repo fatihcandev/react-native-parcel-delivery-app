@@ -86,8 +86,7 @@ const Camera = () => {
           {...{ width }}
           flexDirection="row"
           alignItems="center"
-          justifyContent="space-evenly"
-        >
+          justifyContent="space-evenly">
           <TouchableWithoutFeedback onPress={toggleCameraMode}>
             <Icon
               name={videoMode ? 'camera' : 'videoCamera'}
@@ -104,8 +103,7 @@ const Camera = () => {
               backgroundColor="white"
               borderRadius="cameraShutter"
               justifyContent="center"
-              alignItems="center"
-            >
+              alignItems="center">
               {videoMode && (
                 <Box
                   position="absolute"
