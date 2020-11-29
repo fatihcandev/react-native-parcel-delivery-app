@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Box from './Box';
 import StyledText from './StyledText';
@@ -11,21 +12,23 @@ interface ILayoutProps {
 
 const Layout: React.FC<ILayoutProps> = ({ headingBig, headingSmall, children }) => {
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <Box flex={1} paddingHorizontal="l" paddingVertical="xl">
-        {headingBig && (
-          <StyledText variant="h2" marginBottom="m">
-            {headingBig}
-          </StyledText>
-        )}
-        {headingSmall && (
-          <StyledText variant="h3" marginBottom="m">
-            {headingSmall}
-          </StyledText>
-        )}
-        {children}
+    <SafeAreaView style={{ flex: 1 }}>
+      <Box flex={1} paddingHorizontal="l" paddingVertical="xl" backgroundColor="white">
+        <ScrollView style={{ flex: 1 }}>
+          {headingBig && (
+            <StyledText variant="h2" marginBottom="m">
+              {headingBig}
+            </StyledText>
+          )}
+          {headingSmall && (
+            <StyledText variant="h3" marginBottom="m">
+              {headingSmall}
+            </StyledText>
+          )}
+          {children}
+        </ScrollView>
       </Box>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

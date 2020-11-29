@@ -16,6 +16,8 @@ export { default as Card } from './Card';
 export { default as Avatar } from './Avatar';
 export { default as ProgressBar } from './ProgressBar';
 export { default as MyParcelCard } from './MyParcelCard';
+export { default as ParcelSizeCard } from './ParcelSizeCard';
+export { default as ParcelDeliveryMethodCard } from './ParcelDeliveryMethodCard';
 export { default as IconButton } from './IconButton';
 export { default as ActionSheet } from './ActionSheet';
 export { default as ParcelStatusStep } from './ParcelStatusStep';

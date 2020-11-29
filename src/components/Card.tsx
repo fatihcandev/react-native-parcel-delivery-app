@@ -15,6 +15,7 @@ const Card: React.FC<ICardProps> = ({ children, ...restyleProps }) => {
       borderRadius="s"
       shadowColor="shadow"
       shadowRadius={10}
+      elevation={3}
       borderColor="greyLighter"
       borderWidth={1}
       {...props}

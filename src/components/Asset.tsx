@@ -21,17 +21,17 @@ const Asset: React.FC<IAssetProps> = ({ name, ...rest }) => {
     case AssetName.visa:
       return <Brands.Visa {...rest} />;
     case AssetName.bigBox:
-      return <Illustrations.BigBox {...rest} />;
+      return <Illustrations.BigBox />;
     case AssetName.customParcel:
-      return <Illustrations.CustomParcel {...rest} />;
+      return <Illustrations.CustomParcel />;
     case AssetName.doorDelivery:
-      return <Illustrations.DoorDelivery {...rest} />;
+      return <Illustrations.DoorDelivery />;
     case AssetName.envelope:
-      return <Illustrations.Envelope {...rest} />;
+      return <Illustrations.Envelope />;
     case AssetName.parcelCenter:
-      return <Illustrations.ParcelCenter {...rest} />;
+      return <Illustrations.ParcelCenter />;
     case AssetName.smallBox:
-      return <Illustrations.SmallBox {...rest} />;
+      return <Illustrations.SmallBox />;
     case AssetName.mapParcelCenters:
       return <Illustrations.MapParcelCenters {...rest} />;
     case AssetName.mapRoute:
