@@ -22,7 +22,8 @@ const ParcelStatusStep: React.FC<IParcelStatusStepProps> = ({ icon, label, date,
           backgroundColor="yellowDark"
           justifyContent="center"
           alignItems="center"
-          borderRadius="parcelStep">
+          borderRadius="parcelStep"
+        >
           <Icon name={icon} color="white" />
         </Box>
         {!last && (

@@ -53,7 +53,8 @@ const ActionSheet: React.FC<IActionSheetProps> = ({ onClosePress }) => {
       backgroundColor="white"
       paddingHorizontal="l"
       borderTopLeftRadius="l"
-      borderTopRightRadius="l">
+      borderTopRightRadius="l"
+    >
       {!parcelDetails ? (
         <Loading />
       ) : (

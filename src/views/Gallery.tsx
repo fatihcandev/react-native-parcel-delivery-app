@@ -131,7 +131,8 @@ const Gallery = () => {
               style={StyleSheet.absoluteFill}
               backgroundColor="overlay"
               justifyContent="center"
-              alignItems="center">
+              alignItems="center"
+            >
               <Icon name="check" color="white" />
             </Box>
           )}
@@ -185,7 +186,8 @@ const Gallery = () => {
                   backgroundColor="yellowDark"
                   flexDirection="row"
                   alignItems="center"
-                  elevation={4}>
+                  elevation={4}
+                >
                   <StyledText variant="h3">Gallery</StyledText>
                   <Box flex={1} flexDirection="row" justifyContent="flex-end">
                     {showPicMenu && (

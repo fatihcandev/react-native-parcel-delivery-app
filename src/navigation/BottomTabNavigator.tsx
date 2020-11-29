@@ -32,7 +32,8 @@ const BottomTabNavigator = () => {
           height: 65,
           backgroundColor: theme.colors.white,
         },
-      }}>
+      }}
+    >
       <BottomTab.Screen
         name="MyParcels"
         component={MyParcels}

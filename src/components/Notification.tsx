@@ -63,7 +63,8 @@ const Notification: React.FC<INotificationProps> = ({ notificationDetails }) => 
       height={80}
       backgroundColor="white"
       borderRadius="s"
-      {...{ top, opacity }}>
+      {...{ top, opacity }}
+    >
       <TouchableWithoutFeedback onPress={handleTap}>
         <Box padding="m">
           <StyledText variant="bodyPrimaryBold" marginBottom="s">

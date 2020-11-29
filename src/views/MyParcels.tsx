@@ -78,13 +78,15 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         backgroundColor="yellow"
         borderBottomLeftRadius="l"
         borderBottomRightRadius="l"
-        overflow="hidden">
+        overflow="hidden"
+      >
         <Box
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
           marginBottom="xl"
-          marginTop="xl">
+          marginTop="xl"
+        >
           <Box flexDirection="row" alignItems="center">
             <StyledText variant="h1">Track parcel</StyledText>
             <TouchableWithoutFeedback onPress={handleExpandShrink}>
@@ -96,7 +98,8 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
                         rotate: arrowRotationDeg,
                       },
                     ],
-                  }}>
+                  }}
+                >
                   <Icon name="arrowDown" color="black" />
                 </Animated.View>
               </Box>

@@ -18,7 +18,8 @@ const Card: React.FC<ICardProps> = ({ children, ...restyleProps }) => {
       elevation={3}
       borderColor="greyLighter"
       borderWidth={1}
-      {...props}>
+      {...props}
+    >
       {children}
     </Box>
   );
