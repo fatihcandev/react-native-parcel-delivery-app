@@ -53,21 +53,19 @@ const ActionSheet: React.FC<IActionSheetProps> = ({ onClosePress }) => {
       backgroundColor="white"
       paddingHorizontal="l"
       borderTopLeftRadius="l"
-      borderTopRightRadius="l">
+      borderTopRightRadius="l"
+    >
       {!parcelDetails ? (
         <Loading />
       ) : (
         <>
-          <Box
-            flexDirection="row"
-            justifyContent="space-between"
-            paddingVertical="xl">
+          <Box flexDirection="row" justifyContent="space-between" paddingVertical="xl">
             <StyledText variant="h2">Details</StyledText>
             <TouchableOpacity onPress={handleClose}>
               <Icon name="close" color="black" />
             </TouchableOpacity>
           </Box>
-          <ScrollView style={{ flex: 1 }}>
+          <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
             <Box flex={1} paddingBottom="xl">
               <MyParcelCard {...{ parcelDetails }} isDetailsSheet />
               <Box marginBottom="m">
