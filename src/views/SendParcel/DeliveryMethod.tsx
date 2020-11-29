@@ -1,11 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 
-const DeliveryMethod = () => {
+import { Layout, ParcelDeliveryMethodCard } from 'components';
+import { SendParcelRoutes, StackNavigationProps } from 'types';
+
+const DeliveryMethod = ({ route }: StackNavigationProps<SendParcelRoutes, 'DeliveryMethod'>) => {
+  let parcelSize = route.params.parcelSize;
+
+  console.log('Selected size: ', parcelSize);
   return (
-    <View>
-      <Text>Delivery Method</Text>
-    </View>
+    <Layout headingSmall="Delivery method">
+      <ParcelDeliveryMethodCard method="doorToParcelCenter" />
+      <ParcelDeliveryMethodCard method="doorToDoor" />
+    </Layout>
   );
 };
 

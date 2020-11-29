@@ -8,10 +8,22 @@ const SendParcelStack = createStackNavigator<SendParcelRoutes>();
 
 const SendParcelNavigator = () => {
   return (
-    <SendParcelStack.Navigator headerMode="none">
-      <SendParcelStack.Screen name="ParcelSize" component={ParcelSize} />
-      <SendParcelStack.Screen name="DeliveryMethod" component={DeliveryMethod} />
-      <SendParcelStack.Screen name="Checkout" component={Checkout} />
+    <SendParcelStack.Navigator headerMode="screen">
+      <SendParcelStack.Screen
+        name="ParcelSize"
+        component={ParcelSize}
+        options={{ headerShown: false }}
+      />
+      <SendParcelStack.Screen
+        name="DeliveryMethod"
+        component={DeliveryMethod}
+        options={{ headerShown: true, headerTitle: '', headerStyle: { elevation: 0 } }}
+      />
+      <SendParcelStack.Screen
+        name="Checkout"
+        component={Checkout}
+        options={{ headerShown: true, headerTitle: '', headerStyle: { elevation: 0 } }}
+      />
     </SendParcelStack.Navigator>
   );
 };

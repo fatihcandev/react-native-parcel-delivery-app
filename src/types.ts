@@ -23,8 +23,13 @@ export type BottomTabRoutes = {
 
 export type SendParcelRoutes = {
   ParcelSize: undefined;
-  DeliveryMethod: undefined;
-  Checkout: undefined;
+  DeliveryMethod: {
+    parcelSize: string;
+  };
+  Checkout: {
+    parcelSize: string;
+    deliveryMethod: string;
+  };
 };
 
 export type GalleryRoutes = {
