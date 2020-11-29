@@ -58,8 +58,7 @@ const Camera = () => {
       base64: false,
     });
     if (hasSavePermission && pic) {
-      const res = await CameraRoll.save(pic.uri);
-      console.log(res);
+      await CameraRoll.save(pic.uri);
     }
   };
 

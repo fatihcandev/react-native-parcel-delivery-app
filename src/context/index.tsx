@@ -6,13 +6,11 @@ export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
 export const TAP_NOTIFICATION = 'TAP_NOTIFICATION';
 export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
 export const SET_PARCEL_DETAILS = 'SET_PARCEL_DETAILS';
-export const SET_UPLOADED_PICTURES = 'SET_UPLOADED_PICTURES';
 
 interface IAppState {
   notification?: FirebaseMessagingTypes.RemoteMessage;
   notificationTapped?: boolean;
   parcelDetails?: IParcelDetails;
-  uploadedPictures?: string[];
 }
 export interface IAction<T> {
   type: string;
@@ -29,7 +27,6 @@ const initialState: IContext<IAppState> = {
       lastUpdate: '',
       progress: 0,
     },
-    uploadedPictures: [],
   },
   dispatch: (_value: IAction<IAppState>) => null,
 };
@@ -60,14 +57,6 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
       return {
         ...state,
         parcelDetails: action.data?.parcelDetails,
-      };
-    case SET_UPLOADED_PICTURES:
-      return {
-        ...state,
-        uploadedPictures: [
-          ...(state.uploadedPictures || []),
-          ...action.data?.uploadedPictures!,
-        ],
       };
     default:
       return state;
