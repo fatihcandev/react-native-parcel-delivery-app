@@ -3,19 +3,8 @@ import Svg, { SvgProps, Mask, Path, G } from 'react-native-svg';
 
 function SvgSmallBox(props: SvgProps) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 66 99"
-      className=""
-      {...props}>
-      <Mask
-        id="SmallBox_svg__a"
-        width={56}
-        height={27}
-        x={6}
-        y={41}
-        maskUnits="userSpaceOnUse">
+    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 99" className="" {...props}>
+      <Mask id="SmallBox_svg__a" width={56} height={27} x={6} y={41} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -31,13 +20,7 @@ function SvgSmallBox(props: SvgProps) {
           clipRule="evenodd"
         />
       </G>
-      <Mask
-        id="SmallBox_svg__b"
-        width={9}
-        height={5}
-        x={18}
-        y={63}
-        maskUnits="userSpaceOnUse">
+      <Mask id="SmallBox_svg__b" width={9} height={5} x={18} y={63} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -59,13 +42,7 @@ function SvgSmallBox(props: SvgProps) {
         d="M26.62 67.16l.983-7.09-4.738 3.03 3.756 4.06zm31.632-15.815l-1.234-5.934 4.739-1.677-3.505 7.611z"
         clipRule="evenodd"
       />
-      <Mask
-        id="SmallBox_svg__c"
-        width={23}
-        height={12}
-        x={42}
-        y={32}
-        maskUnits="userSpaceOnUse">
+      <Mask id="SmallBox_svg__c" width={23} height={12} x={42} y={32} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -81,13 +58,7 @@ function SvgSmallBox(props: SvgProps) {
           clipRule="evenodd"
         />
       </G>
-      <Mask
-        id="SmallBox_svg__d"
-        width={23}
-        height={12}
-        x={42}
-        y={32}
-        maskUnits="userSpaceOnUse">
+      <Mask id="SmallBox_svg__d" width={23} height={12} x={42} y={32} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -115,13 +86,7 @@ function SvgSmallBox(props: SvgProps) {
         d="M0 54.912l19.348 9.68 3.517-1.764-19.348-9.68L0 54.912z"
         clipRule="evenodd"
       />
-      <Mask
-        id="SmallBox_svg__e"
-        width={53}
-        height={26}
-        x={6}
-        y={31}
-        maskUnits="userSpaceOnUse">
+      <Mask id="SmallBox_svg__e" width={53} height={26} x={6} y={31} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"

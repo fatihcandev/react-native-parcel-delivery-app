@@ -6,10 +6,7 @@ import StyledImage from 'components/StyledImage';
 function ImageAmazon(props: any) {
   return (
     <Box {...props}>
-      <StyledImage
-        source={require('assets/images/brands/amazon.png')}
-        resizeMode="contain"
-      />
+      <StyledImage source={require('assets/images/brands/amazon.png')} resizeMode="contain" />
     </Box>
   );
 }

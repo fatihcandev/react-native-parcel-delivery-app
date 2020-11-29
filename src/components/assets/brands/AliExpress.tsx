@@ -6,10 +6,7 @@ import StyledImage from 'components/StyledImage';
 function ImageAliExpress(props: any) {
   return (
     <Box {...props}>
-      <StyledImage
-        source={require('assets/images/brands/aliexpress.png')}
-        resizeMode="contain"
-      />
+      <StyledImage source={require('assets/images/brands/aliexpress.png')} resizeMode="contain" />
     </Box>
   );
 }

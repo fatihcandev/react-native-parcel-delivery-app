@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
-import Animated, {
-  Easing,
-  interpolate,
-  useValue,
-} from 'react-native-reanimated';
+import Animated, { Easing, interpolate, useValue } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { RootStack } from 'types';
@@ -34,9 +30,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
 
   useEffect(() => {
     async function getTrackingNumberFromQr() {
-      const trackingNumberFromQr = await AsyncStorage.getItem(
-        'trackingNumberFromQr',
-      );
+      const trackingNumberFromQr = await AsyncStorage.getItem('trackingNumberFromQr');
       if (trackingNumberFromQr !== null) {
         setTrackingNumber(trackingNumberFromQr);
       }
@@ -70,10 +64,10 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
   const handleExpandShrink = () => {
     timing(topBarHeightValue, topBarAnim).start();
     timing(arrowRotateValue, arrowIconAnim).start();
-    setTopBarExpanded(s => !s);
+    setTopBarExpanded((s) => !s);
   };
 
-  const toggleDetails = () => setOpenDetails(s => !s);
+  const toggleDetails = () => setOpenDetails((s) => !s);
 
   return (
     <SafeAreaView style={{ flex: 1, position: 'relative' }}>
@@ -84,13 +78,15 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         backgroundColor="yellow"
         borderBottomLeftRadius="l"
         borderBottomRightRadius="l"
-        overflow="hidden">
+        overflow="hidden"
+      >
         <Box
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
           marginBottom="xl"
-          marginTop="xl">
+          marginTop="xl"
+        >
           <Box flexDirection="row" alignItems="center">
             <StyledText variant="h1">Track parcel</StyledText>
             <TouchableWithoutFeedback onPress={handleExpandShrink}>
@@ -102,7 +98,8 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
                         rotate: arrowRotationDeg,
                       },
                     ],
-                  }}>
+                  }}
+                >
                   <Icon name="arrowDown" color="black" />
                 </Animated.View>
               </Box>
@@ -122,13 +119,10 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
                   type="search"
                   placeholder="tracking number"
                   value={trackingNumber}
-                  onChangeText={v => setTrackingNumber(v)}
+                  onChangeText={(v) => setTrackingNumber(v)}
                 />
               </Box>
-              <IconButton
-                icon="qrCode"
-                onPress={() => navigation.navigate('Camera')}
-              />
+              <IconButton icon="qrCode" onPress={() => navigation.navigate('Camera')} />
             </Box>
           </Box>
           <Box>
@@ -137,7 +131,7 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         </Box>
       </AnimatedBox>
       <Layout headingSmall="My parcels">
-        {myParcelsData.map(parcelDetails => (
+        {myParcelsData.map((parcelDetails) => (
           <MyParcelCard
             key={parcelDetails.id}
             {...{ parcelDetails }}

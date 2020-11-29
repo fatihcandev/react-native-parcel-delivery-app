@@ -1,10 +1,4 @@
-import {
-  layout,
-  LayoutProps,
-  spacing,
-  SpacingProps,
-  useRestyle,
-} from '@shopify/restyle';
+import { layout, LayoutProps, spacing, SpacingProps, useRestyle } from '@shopify/restyle';
 import React from 'react';
 
 import { Theme } from 'theme';
@@ -23,7 +17,8 @@ const Card: React.FC<ICardProps> = ({ children, ...restyleProps }) => {
       shadowRadius={10}
       borderColor="greyLighter"
       borderWidth={1}
-      {...props}>
+      {...props}
+    >
       {children}
     </Box>
   );

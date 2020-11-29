@@ -10,10 +10,7 @@ const SendParcelNavigator = () => {
   return (
     <SendParcelStack.Navigator headerMode="none">
       <SendParcelStack.Screen name="ParcelSize" component={ParcelSize} />
-      <SendParcelStack.Screen
-        name="DeliveryMethod"
-        component={DeliveryMethod}
-      />
+      <SendParcelStack.Screen name="DeliveryMethod" component={DeliveryMethod} />
       <SendParcelStack.Screen name="Checkout" component={Checkout} />
     </SendParcelStack.Navigator>
   );

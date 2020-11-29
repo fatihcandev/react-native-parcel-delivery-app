@@ -12,16 +12,8 @@ import Svg, {
 
 function SvgCustomParcel(props: SvgProps) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 66 99"
-      className=""
-      {...props}>
-      <G
-        fillRule="evenodd"
-        clipPath="url(#CustomParcel_svg__clip0)"
-        clipRule="evenodd">
+    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 99" className="" {...props}>
+      <G fillRule="evenodd" clipPath="url(#CustomParcel_svg__clip0)" clipRule="evenodd">
         <Path
           fill="url(#CustomParcel_svg__paint0_linear)"
           d="M34.702 8.802c-2.27.12-3.635 1.366-4.097 3.737l-.047.285-.059.423-.107.882-.085.745-.252 2.368-.24 2.368-.565 5.804-.824 8.786-1.909 20.956-2.61 29.219c-.283 3.051.857 4.693 3.42 4.924l7.375-80.497z"
@@ -136,7 +128,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={43.372}
           y1={128.37}
           y2={126.855}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#EBEAEA" />
           <Stop offset={1} stopColor="#D2D1D1" />
         </LinearGradient>
@@ -146,7 +139,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={62.718}
           y1={146.244}
           y2={140.588}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#ECECEC" />
           <Stop offset={1} stopColor="#E0E0E0" />
         </LinearGradient>
@@ -156,7 +150,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={57.427}
           y1={116.55}
           y2={107.65}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#F2F2F2" />
           <Stop offset={1} stopColor="#E0E0E0" />
         </LinearGradient>
@@ -166,7 +161,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={49.273}
           y1={115.427}
           y2={109.626}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#F7F7F7" />
           <Stop offset={1} stopColor="#ECECEC" />
         </LinearGradient>
@@ -176,7 +172,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={40.556}
           y1={88.717}
           y2={93.303}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#FDB132" />
           <Stop offset={1} stopColor="#FFD64D" />
         </LinearGradient>
@@ -186,7 +183,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={46.618}
           y1={40.509}
           y2={41.755}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#FDB132" />
           <Stop offset={1} stopColor="#FFD64D" />
         </LinearGradient>
@@ -196,7 +194,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={45.354}
           y1={90.269}
           y2={88.954}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#EEE" />
           <Stop offset={1} stopColor="#D8D8D8" />
         </LinearGradient>
@@ -206,7 +205,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={45.738}
           y1={89.876}
           y2={88.434}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#EEE" />
           <Stop offset={1} stopColor="#D8D8D8" />
         </LinearGradient>
@@ -216,7 +216,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={44.966}
           y1={95.872}
           y2={95.907}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#ECECEC" />
           <Stop offset={1} stopColor="#E0E0E0" />
         </LinearGradient>
@@ -226,7 +227,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={0.553}
           y1={-1.412}
           y2={3.656}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#FDB132" />
           <Stop offset={1} stopColor="#FFD64D" />
         </LinearGradient>
@@ -236,7 +238,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={58.722}
           y1={30.228}
           y2={31.474}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#FDB132" />
           <Stop offset={1} stopColor="#FFD64D" />
         </LinearGradient>
@@ -246,7 +249,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={52.787}
           y1={90.269}
           y2={88.954}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#EEE" />
           <Stop offset={1} stopColor="#D8D8D8" />
         </LinearGradient>
@@ -256,7 +260,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={2.108}
           y1={1.148}
           y2={-0.294}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#EEE" />
           <Stop offset={1} stopColor="#D8D8D8" />
         </LinearGradient>
@@ -266,7 +271,8 @@ function SvgCustomParcel(props: SvgProps) {
           x2={53.175}
           y1={95.872}
           y2={95.907}
-          gradientUnits="userSpaceOnUse">
+          gradientUnits="userSpaceOnUse"
+        >
           <Stop stopColor="#ECECEC" />
           <Stop offset={1} stopColor="#E0E0E0" />
         </LinearGradient>

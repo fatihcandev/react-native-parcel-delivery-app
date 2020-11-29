@@ -33,10 +33,7 @@ const StyledInput: React.FC<IStyledInputProps> = ({
   return (
     <Box>
       {!isSearch && (
-        <StyledText
-          variant="bodyPrimary"
-          color={focused ? 'black' : 'greyLight'}
-          marginBottom="s">
+        <StyledText variant="bodyPrimary" color={focused ? 'black' : 'greyLight'} marginBottom="s">
           {label}
         </StyledText>
       )}

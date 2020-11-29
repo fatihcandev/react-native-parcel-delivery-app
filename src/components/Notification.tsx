@@ -14,9 +14,7 @@ interface INotificationProps {
   notificationDetails: FirebaseMessagingTypes.Notification;
 }
 
-const Notification: React.FC<INotificationProps> = ({
-  notificationDetails,
-}) => {
+const Notification: React.FC<INotificationProps> = ({ notificationDetails }) => {
   const { dispatch } = useContext(AppContext);
   const { timing } = Animated;
   const top = useValue(-80);
@@ -65,15 +63,14 @@ const Notification: React.FC<INotificationProps> = ({
       height={80}
       backgroundColor="white"
       borderRadius="s"
-      {...{ top, opacity }}>
+      {...{ top, opacity }}
+    >
       <TouchableWithoutFeedback onPress={handleTap}>
         <Box padding="m">
           <StyledText variant="bodyPrimaryBold" marginBottom="s">
             {notificationDetails.title}
           </StyledText>
-          <StyledText variant="bodyPrimary">
-            {notificationDetails.body}
-          </StyledText>
+          <StyledText variant="bodyPrimary">{notificationDetails.body}</StyledText>
         </Box>
       </TouchableWithoutFeedback>
     </AnimatedBox>

@@ -3,12 +3,7 @@ import Svg, { SvgProps, Path } from 'react-native-svg';
 
 function SvgBigBox(props: SvgProps) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 66 99"
-      className=""
-      {...props}>
+    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 99" className="" {...props}>
       <Path
         fill="#D9D9D9"
         fillRule="evenodd"

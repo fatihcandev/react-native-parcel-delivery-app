@@ -30,22 +30,16 @@ const Camera = () => {
 
   useEffect(() => {
     async function getPermission() {
-      const readPermission =
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-      const writePermission =
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+      const readPermission = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+      const writePermission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
       const hasReadPermission = await PermissionsAndroid.check(readPermission);
-      const hasWritePermission = await PermissionsAndroid.check(
-        writePermission,
-      );
+      const hasWritePermission = await PermissionsAndroid.check(writePermission);
       if (hasReadPermission && hasWritePermission) {
         setHasSavePermission(true);
       } else {
         const readStatus = await PermissionsAndroid.request(readPermission);
         const writeStatus = await PermissionsAndroid.request(writePermission);
-        setHasSavePermission(
-          readStatus === 'granted' && writeStatus === 'granted',
-        );
+        setHasSavePermission(readStatus === 'granted' && writeStatus === 'granted');
       }
     }
 
@@ -92,7 +86,8 @@ const Camera = () => {
           {...{ width }}
           flexDirection="row"
           alignItems="center"
-          justifyContent="space-evenly">
+          justifyContent="space-evenly"
+        >
           <TouchableWithoutFeedback onPress={toggleCameraMode}>
             <Icon
               name={videoMode ? 'camera' : 'videoCamera'}
@@ -109,7 +104,8 @@ const Camera = () => {
               backgroundColor="white"
               borderRadius="cameraShutter"
               justifyContent="center"
-              alignItems="center">
+              alignItems="center"
+            >
               {videoMode && (
                 <Box
                   position="absolute"

@@ -3,19 +3,8 @@ import Svg, { SvgProps, Mask, Path, G } from 'react-native-svg';
 
 function SvgEnvelope(props: SvgProps) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 66 99"
-      className=""
-      {...props}>
-      <Mask
-        id="Envelope_svg__a"
-        width={65}
-        height={34}
-        x={1}
-        y={33}
-        maskUnits="userSpaceOnUse">
+    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 99" className="" {...props}>
+      <Mask id="Envelope_svg__a" width={65} height={34} x={1} y={33} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -31,13 +20,7 @@ function SvgEnvelope(props: SvgProps) {
           clipRule="evenodd"
         />
       </G>
-      <Mask
-        id="Envelope_svg__b"
-        width={65}
-        height={33}
-        x={1}
-        y={33}
-        maskUnits="userSpaceOnUse">
+      <Mask id="Envelope_svg__b" width={65} height={33} x={1} y={33} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"
@@ -59,13 +42,7 @@ function SvgEnvelope(props: SvgProps) {
         d="M18.873 41.704L56.065 60.3l.17-.085-37.191-18.596-.17.085z"
         clipRule="evenodd"
       />
-      <Mask
-        id="Envelope_svg__c"
-        width={30}
-        height={16}
-        x={1}
-        y={33}
-        maskUnits="userSpaceOnUse">
+      <Mask id="Envelope_svg__c" width={30} height={16} x={1} y={33} maskUnits="userSpaceOnUse">
         <Path
           fill="#fff"
           fillRule="evenodd"

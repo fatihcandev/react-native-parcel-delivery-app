@@ -70,11 +70,7 @@ interface IAppProvider {
 const AppProvider: React.FC<IAppProvider> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState.state);
 
-  return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
 
 export { AppContext, AppProvider };

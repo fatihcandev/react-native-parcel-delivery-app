@@ -32,7 +32,8 @@ const BottomTabNavigator = () => {
           height: 65,
           backgroundColor: theme.colors.white,
         },
-      }}>
+      }}
+    >
       <BottomTab.Screen
         name="MyParcels"
         component={MyParcels}
@@ -53,9 +54,7 @@ const BottomTabNavigator = () => {
         name="ParcelCenter"
         component={ParcelCenter}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="parcelCenter" {...{ color }} />
-          ),
+          tabBarIcon: ({ color }) => <Icon name="parcelCenter" {...{ color }} />,
           tabBarLabel: 'Parcel center',
         }}
       />

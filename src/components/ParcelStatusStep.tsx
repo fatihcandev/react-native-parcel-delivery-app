@@ -11,18 +11,9 @@ interface IParcelStatusStepProps {
   last: boolean;
 }
 
-const ParcelStatusStep: React.FC<IParcelStatusStepProps> = ({
-  icon,
-  label,
-  date,
-  last,
-}) => {
+const ParcelStatusStep: React.FC<IParcelStatusStepProps> = ({ icon, label, date, last }) => {
   return (
-    <Box
-      height={44}
-      flexDirection="row"
-      alignItems="center"
-      marginBottom={last ? undefined : 'l'}>
+    <Box height={44} flexDirection="row" alignItems="center" marginBottom={last ? undefined : 'l'}>
       <Box position="relative">
         <Box
           width={44}
@@ -31,16 +22,12 @@ const ParcelStatusStep: React.FC<IParcelStatusStepProps> = ({
           backgroundColor="yellowDark"
           justifyContent="center"
           alignItems="center"
-          borderRadius="parcelStep">
+          borderRadius="parcelStep"
+        >
           <Icon name={icon} color="white" />
         </Box>
         {!last && (
-          <Box
-            width={44}
-            height={24}
-            alignItems="center"
-            position="absolute"
-            bottom={-24}>
+          <Box width={44} height={24} alignItems="center" position="absolute" bottom={-24}>
             <Box width={1} height={24} backgroundColor="yellowDark" />
           </Box>
         )}

@@ -9,11 +9,7 @@ interface ILayoutProps {
   headingSmall?: string;
 }
 
-const Layout: React.FC<ILayoutProps> = ({
-  headingBig,
-  headingSmall,
-  children,
-}) => {
+const Layout: React.FC<ILayoutProps> = ({ headingBig, headingSmall, children }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Box flex={1} paddingHorizontal="l" paddingVertical="xl">

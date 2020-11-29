@@ -9,11 +9,7 @@ interface IStyledButtonProps {
   onPress: () => void;
 }
 
-const StyledButton: React.FC<IStyledButtonProps> = ({
-  onPress,
-  label,
-  children,
-}) => {
+const StyledButton: React.FC<IStyledButtonProps> = ({ onPress, label, children }) => {
   return (
     <RectButton onPress={onPress}>
       <Box
@@ -23,7 +19,8 @@ const StyledButton: React.FC<IStyledButtonProps> = ({
         backgroundColor="black"
         justifyContent="center"
         alignItems="center"
-        borderRadius="s">
+        borderRadius="s"
+      >
         {label ? (
           <StyledText variant="button" color="white">
             {label}

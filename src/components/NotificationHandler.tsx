@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import messaging from '@react-native-firebase/messaging';
 
-import {
-  AppContext,
-  CLEAR_NOTIFICATION_DATA,
-  SET_NOTIFICATION_DATA,
-} from 'context';
+import { AppContext, CLEAR_NOTIFICATION_DATA, SET_NOTIFICATION_DATA } from 'context';
 import Notification from './Notification';
 
 const NotificationHandler: React.FC = () => {
   const { state, dispatch } = useContext(AppContext);
-  const [notificationPermitted, setNotificationPermitted] = useState<boolean>(
-    false,
-  );
+  const [notificationPermitted, setNotificationPermitted] = useState<boolean>(false);
   let notificationDetails = state.notification?.notification!;
 
   useEffect(() => {
@@ -34,7 +28,7 @@ const NotificationHandler: React.FC = () => {
   useEffect(() => {
     function getBackgroundNotification() {
       if (notificationPermitted) {
-        messaging().onNotificationOpenedApp(notification => {
+        messaging().onNotificationOpenedApp((notification) => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -52,10 +46,7 @@ const NotificationHandler: React.FC = () => {
     async function getQuitStateNotification() {
       if (notificationPermitted) {
         const notification = await messaging().getInitialNotification();
-        if (
-          notification !== null &&
-          notification.messageType !== 'foreground'
-        ) {
+        if (notification !== null && notification.messageType !== 'foreground') {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -72,7 +63,7 @@ const NotificationHandler: React.FC = () => {
   useEffect(() => {
     function getForegroundNotification() {
       if (notificationPermitted) {
-        messaging().onMessage(notification => {
+        messaging().onMessage((notification) => {
           dispatch({
             type: SET_NOTIFICATION_DATA,
             data: {
@@ -103,9 +94,7 @@ const NotificationHandler: React.FC = () => {
     }
   }, [dispatch, notificationDetails]);
 
-  return notificationDetails ? (
-    <Notification {...{ notificationDetails }} />
-  ) : null;
+  return notificationDetails ? <Notification {...{ notificationDetails }} /> : null;
 };
 
 export default NotificationHandler;
