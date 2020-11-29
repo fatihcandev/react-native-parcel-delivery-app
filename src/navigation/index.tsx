@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { RootStack } from 'types';
-import { Icon } from 'components';
+import { Box, Icon } from 'components';
 import { Camera } from 'views';
 import BottomTabNavigator from './BottomTabNavigator';
 
@@ -28,7 +28,9 @@ const Navigator = () => {
           headerLeft: ({ onPress }) => {
             return (
               <TouchableOpacity {...{ onPress }}>
-                <Icon name="arrowLeft" color="white" />
+                <Box padding="m">
+                  <Icon name="arrowLeft" color="white" />
+                </Box>
               </TouchableOpacity>
             );
           },
