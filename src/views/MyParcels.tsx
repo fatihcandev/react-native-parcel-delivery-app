@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import Animated, { Easing, interpolate, useValue } from 'react-native-reanimated';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
 
-import { RootStack } from 'types';
+import { MainRoutes } from 'types';
 import myParcelsData from 'data/myParcelsData';
 import {
   Box,
@@ -21,23 +21,12 @@ import {
   AnimatedBox,
 } from 'components';
 
-const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
+const MyParcels = ({ navigation }: StackScreenProps<MainRoutes, 'Root'>) => {
   const [trackingNumber, setTrackingNumber] = useState<string>('');
   const [topBarExpanded, setTopBarExpanded] = useState<boolean>(false);
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const topBarHeightValue = useValue(120);
   const arrowRotateValue = useValue(0);
-
-  useEffect(() => {
-    async function getTrackingNumberFromQr() {
-      const trackingNumberFromQr = await AsyncStorage.getItem('trackingNumberFromQr');
-      if (trackingNumberFromQr !== null) {
-        setTrackingNumber(trackingNumberFromQr);
-      }
-    }
-
-    getTrackingNumberFromQr();
-  }, []);
 
   const { timing } = Animated;
 
@@ -65,6 +54,10 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
     timing(topBarHeightValue, topBarAnim).start();
     timing(arrowRotateValue, arrowIconAnim).start();
     setTopBarExpanded(s => !s);
+  };
+
+  const handleSignOut = async () => {
+    await auth().signOut();
   };
 
   const toggleDetails = () => setOpenDetails(s => !s);
@@ -131,6 +124,11 @@ const MyParcels = ({ navigation }: StackScreenProps<RootStack, 'Root'>) => {
         </Box>
       </AnimatedBox>
       <Layout headingSmall="My parcels">
+        <TouchableWithoutFeedback onPress={handleSignOut}>
+          <StyledText variant="h3" marginBottom="xl">
+            Sign out
+          </StyledText>
+        </TouchableWithoutFeedback>
         {myParcelsData.map(parcelDetails => (
           <MyParcelCard
             key={parcelDetails.id}
