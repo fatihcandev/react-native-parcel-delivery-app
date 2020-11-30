@@ -14,7 +14,7 @@ const Layout: React.FC<ILayoutProps> = ({ headingBig, headingSmall, children }) 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Box flex={1} paddingHorizontal="l" paddingVertical="xl" backgroundColor="white">
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {headingBig && (
             <StyledText variant="h2" marginBottom="m">
               {headingBig}
