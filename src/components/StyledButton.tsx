@@ -1,19 +1,27 @@
 import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
+import { ActivityIndicator } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Box from './Box';
 import StyledText from './StyledText';
 
 interface IStyledButtonProps {
   label?: string;
+  loading?: boolean;
+  disabled?: boolean;
   onPress: () => void;
 }
 
-const StyledButton: React.FC<IStyledButtonProps> = ({ onPress, label, children }) => {
+const StyledButton: React.FC<IStyledButtonProps> = ({
+  onPress,
+  label,
+  loading,
+  disabled,
+  children,
+}) => {
   return (
-    <RectButton onPress={onPress}>
+    <TouchableOpacity onPress={onPress} {...{ disabled }}>
       <Box
-        width="100%"
         height={48}
         paddingVertical="button"
         backgroundColor="black"
@@ -21,7 +29,9 @@ const StyledButton: React.FC<IStyledButtonProps> = ({ onPress, label, children }
         alignItems="center"
         borderRadius="s"
       >
-        {label ? (
+        {loading ? (
+          <ActivityIndicator color="white" size="small" />
+        ) : label ? (
           <StyledText variant="button" color="white">
             {label}
           </StyledText>
@@ -29,7 +39,7 @@ const StyledButton: React.FC<IStyledButtonProps> = ({ onPress, label, children }
           children
         )}
       </Box>
-    </RectButton>
+    </TouchableOpacity>
   );
 };
 

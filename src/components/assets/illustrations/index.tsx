@@ -6,3 +6,4 @@ export { default as MapParcelCenters } from './MapParcelCenters';
 export { default as MapRoute } from './MapRoute';
 export { default as ParcelCenter } from './ParcelCenter';
 export { default as SmallBox } from './SmallBox';
+export { default as Phone } from './Phone';

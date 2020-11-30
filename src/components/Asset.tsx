@@ -36,6 +36,10 @@ const Asset: React.FC<IAssetProps> = ({ name, ...rest }) => {
       return <Illustrations.MapParcelCenters {...rest} />;
     case AssetName.mapRoute:
       return <Illustrations.MapRoute {...rest} />;
+    case AssetName.phone:
+      return <Illustrations.Phone {...rest} />;
+    case AssetName.mapRoute:
+      return <Illustrations.OTPSent {...rest} />;
     default:
       return null;
   }

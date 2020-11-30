@@ -1,16 +1,22 @@
 import React, { useReducer } from 'react';
 import { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 import { IParcelDetails } from 'types';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 export const SET_NOTIFICATION_DATA = 'SET_NOTIFICATION_DATA';
 export const TAP_NOTIFICATION = 'TAP_NOTIFICATION';
 export const CLEAR_NOTIFICATION_DATA = 'CLEAR_NOTIFICATION_DATA';
 export const SET_PARCEL_DETAILS = 'SET_PARCEL_DETAILS';
+export const AUTH_FINISHED = 'AUTH_FINISHED';
+export const VERIFY_PHONE_NUMBER = 'VERIFY_PHONE_NUMBER';
 
 interface IAppState {
+  authLoading?: boolean;
   notification?: FirebaseMessagingTypes.RemoteMessage;
   notificationTapped?: boolean;
   parcelDetails?: IParcelDetails;
+  phoneNumber?: string;
+  confirmationResult?: FirebaseAuthTypes.ConfirmationResult;
 }
 export interface IAction<T> {
   type: string;
@@ -18,7 +24,8 @@ export interface IAction<T> {
 }
 const initialState: IContext<IAppState> = {
   state: {
-    notification: {},
+    authLoading: true,
+    notification: undefined,
     notificationTapped: false,
     parcelDetails: {
       id: '',
@@ -27,6 +34,8 @@ const initialState: IContext<IAppState> = {
       lastUpdate: '',
       progress: 0,
     },
+    phoneNumber: '',
+    confirmationResult: undefined,
   },
   dispatch: (_value: IAction<IAppState>) => null,
 };
@@ -57,6 +66,17 @@ const reducer = (state: IAppState, action: IAction<IAppState>): IAppState => {
       return {
         ...state,
         parcelDetails: action.data?.parcelDetails,
+      };
+    case AUTH_FINISHED:
+      return {
+        ...state,
+        authLoading: false,
+      };
+    case VERIFY_PHONE_NUMBER:
+      return {
+        ...state,
+        phoneNumber: action.data?.phoneNumber,
+        confirmationResult: action.data?.confirmationResult,
       };
     default:
       return state;

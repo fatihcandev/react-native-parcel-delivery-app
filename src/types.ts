@@ -9,9 +9,14 @@ export interface StackNavigationProps<
   route: RouteProp<ParamList, RouteName>;
 }
 
-export type RootStack = {
+export type MainRoutes = {
   Root: undefined;
   Camera: undefined;
+};
+
+export type AuthRoutes = {
+  Login: undefined;
+  LoginVerifyCode: undefined;
 };
 
 export type BottomTabRoutes = {
@@ -92,4 +97,6 @@ export enum AssetName {
   smallBox = 'smallBox',
   mapParcelCenters = 'mapParcelCenters',
   mapRoute = 'mapRoute',
+  phone = 'phone',
+  otpSent = 'otpSent',
 }
