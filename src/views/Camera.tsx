@@ -1,10 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  Dimensions,
-  PermissionsAndroid,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera';
 import CameraRoll from '@react-native-community/cameraroll';
 import { useNavigation } from '@react-navigation/native';
@@ -16,7 +11,6 @@ import { Box, Icon } from 'components';
 const Camera = () => {
   const [cameraType, setCameraType] = useState<'back' | 'front'>('back');
   const [videoMode, setVideoMode] = useState<boolean>(false);
-  const [hasSavePermission, setHasSavePermission] = useState<boolean>(false);
   const navigator = useNavigation();
   const ref = useRef<RNCamera>(null);
   const { width } = Dimensions.get('window');
@@ -28,30 +22,12 @@ const Camera = () => {
     });
   };
 
-  useEffect(() => {
-    async function getPermission() {
-      const readPermission = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
-      const writePermission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
-      const hasReadPermission = await PermissionsAndroid.check(readPermission);
-      const hasWritePermission = await PermissionsAndroid.check(writePermission);
-      if (hasReadPermission && hasWritePermission) {
-        setHasSavePermission(true);
-      } else {
-        const readStatus = await PermissionsAndroid.request(readPermission);
-        const writeStatus = await PermissionsAndroid.request(writePermission);
-        setHasSavePermission(readStatus === 'granted' && writeStatus === 'granted');
-      }
-    }
-
-    getPermission();
-  }, []);
-
   const takePicture = async () => {
     const pic = await ref.current?.takePictureAsync({
       quality: 0.5,
       base64: false,
     });
-    if (hasSavePermission && pic) {
+    if (pic) {
       await CameraRoll.save(pic.uri);
     }
   };

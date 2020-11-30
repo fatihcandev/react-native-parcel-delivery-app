@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, RefreshControl, StyleSheet } from 'react-native';
+import {
+  Alert,
+  Dimensions,
+  FlatList,
+  PermissionsAndroid,
+  RefreshControl,
+  StyleSheet,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import CameraRoll from '@react-native-community/cameraroll';
@@ -15,49 +22,14 @@ const Gallery = () => {
   const [selectedPictures, setSelectedPictures] = useState<Set<IPicture>>(new Set());
   const [pictures, setPictures] = useState<IPicture[]>([]);
   const [picNum, setPicNum] = useState<number>(4);
+  const [hasStoragePermission, setHasStoragePermission] = useState<boolean>(false);
   const [fetchingPics, setFetchingPics] = useState<boolean>(true);
   const [previewMode, setPreviewMode] = useState<boolean>(false);
   const [showPicMenu, setShowPicMenu] = useState<boolean>(false);
   const [refreshing, setRefreshing] = useState<boolean>(true);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
   const { width, height } = Dimensions.get('window');
   const navigator = useNavigation();
-
-  const handleUpload = async () => {
-    const selectedPicturesArr = Array.from(selectedPictures);
-    setUploading(true);
-    for (let i = 0; i < selectedPicturesArr.length; i++) {
-      const pic = selectedPicturesArr[i];
-      const { fileName, uri } = pic;
-      const ref = storage().ref(`images/${fileName}`);
-      try {
-        const task = await ref.putFile(uri);
-        if (task.state === 'success') {
-          console.log('uploaded!');
-          try {
-            const preUploadedPics = await AsyncStorage.getItem('uploadedPictures');
-            if (preUploadedPics !== null) {
-              const picsToUpload = [...JSON.parse(preUploadedPics), { fileName }];
-              const uploadedPics = JSON.stringify(picsToUpload);
-              await AsyncStorage.setItem('uploadedPictures', uploadedPics);
-            } else {
-              const uploadedPics = JSON.stringify([
-                {
-                  fileName,
-                },
-              ]);
-              await AsyncStorage.setItem('uploadedPictures', uploadedPics);
-            }
-          } catch (error) {
-            console.warn(error);
-          }
-        }
-      } catch (error) {
-        console.warn(error);
-      }
-    }
-    setSelectedPictures(new Set());
-    setUploading(false);
-  };
 
   useEffect(() => {
     if (selectedPictures.size === 0) {
@@ -66,11 +38,29 @@ const Gallery = () => {
   }, [selectedPictures.size]);
 
   useEffect(() => {
+    async function getStoragePermission() {
+      const readPermission = PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+      const writePermission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+      const hasReadPermission = await PermissionsAndroid.check(readPermission);
+      const hasWritePermission = await PermissionsAndroid.check(writePermission);
+      if (hasReadPermission && hasWritePermission) {
+        return setHasStoragePermission(true);
+      } else {
+        const readStatus = await PermissionsAndroid.request(readPermission);
+        const writeStatus = await PermissionsAndroid.request(writePermission);
+        setHasStoragePermission(readStatus === 'granted' && writeStatus === 'granted');
+      }
+    }
+    getStoragePermission();
+  }, []);
+
+  useEffect(() => {
     async function getPictures() {
       try {
         const pics = await CameraRoll.getPhotos({
           first: 4,
           include: ['filename'],
+          assetType: 'Photos',
         });
         const picsUriArr = pics.edges.map(e => {
           const { filename, uri } = e.node.image;
@@ -87,10 +77,10 @@ const Gallery = () => {
         setRefreshing(false);
       }
     }
-    if (refreshing) {
+    if (refreshing && hasStoragePermission) {
       getPictures();
     }
-  }, [refreshing]);
+  }, [refreshing, hasStoragePermission]);
 
   const togglePreviewMode = () => {
     setPicNum(previewMode ? 4 : 1);
@@ -110,6 +100,44 @@ const Gallery = () => {
     } else {
       togglePreviewMode();
     }
+  };
+
+  const handleUpload = async () => {
+    const selectedPicturesArr = Array.from(selectedPictures);
+    setUploading(true);
+    for (let i = 0; i < selectedPicturesArr.length; i++) {
+      const pic = selectedPicturesArr[i];
+      const { fileName, uri } = pic;
+      const ref = storage().ref(`images/${fileName}`);
+      const task = ref.putFile(uri);
+      task.on('state_changed', snapshot => {
+        const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000;
+        setUploadProgress(progress);
+      });
+      try {
+        const taskSnapshot = await task;
+        if (taskSnapshot.state === 'success') {
+          const preUploadedPics = await AsyncStorage.getItem('uploadedPictures');
+          if (preUploadedPics !== null) {
+            const picsToUpload = [...JSON.parse(preUploadedPics), { fileName }];
+            const uploadedPics = JSON.stringify(picsToUpload);
+            await AsyncStorage.setItem('uploadedPictures', uploadedPics);
+          } else {
+            const uploadedPics = JSON.stringify([
+              {
+                fileName,
+              },
+            ]);
+            await AsyncStorage.setItem('uploadedPictures', uploadedPics);
+          }
+        }
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+    setSelectedPictures(new Set());
+    setUploading(false);
+    Alert.alert('Success!', 'Your pictures has been uploaded to Firebase Cloud Storage!');
   };
 
   const renderPicture = (pic: IPicture) => {
@@ -188,6 +216,11 @@ const Gallery = () => {
                   alignItems="center"
                   elevation={4}
                 >
+                  <TouchableOpacity onPress={() => navigator.goBack()}>
+                    <Box marginRight="s">
+                      <Icon name="arrowLeft" color="black" />
+                    </Box>
+                  </TouchableOpacity>
                   <StyledText variant="h3">Gallery</StyledText>
                   <Box flex={1} flexDirection="row" justifyContent="flex-end">
                     {showPicMenu && (
@@ -234,7 +267,7 @@ const Gallery = () => {
                   </TouchableOpacity>
                 </Box>
               )}
-              {uploading && <UploadIndicator />}
+              {uploading && <UploadIndicator progress={uploadProgress} />}
             </>
           </SafeAreaView>
         )

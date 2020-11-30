@@ -28,10 +28,10 @@ const Gallery = () => {
           const uploadedPicsJson = JSON.parse(uploadedPictures);
           console.log('cloud pics', uploadedPicsJson);
           for (const pic in uploadedPicsJson) {
-            if (Object.prototype.hasOwnProperty.call(uploadedPicsJson, pic)) {
-              const fileName = uploadedPicsJson[pic].fileName;
-              const ref = storage().ref(`images/${fileName}`);
-              const uri = await ref.getDownloadURL();
+            const fileName = uploadedPicsJson[pic].fileName;
+            const ref = storage().ref(`images/${fileName}`);
+            const uri = await ref.getDownloadURL();
+            if (uri) {
               setPictures(prev => [
                 ...prev,
                 {
@@ -41,12 +41,14 @@ const Gallery = () => {
               ]);
             }
           }
+          setRefreshing(false);
+          setFetchingPics(false);
+        } else {
+          setRefreshing(false);
+          setFetchingPics(false);
         }
       } catch (error) {
         console.warn(error);
-      } finally {
-        setRefreshing(false);
-        setFetchingPics(false);
       }
     }
     if (refreshing) {
