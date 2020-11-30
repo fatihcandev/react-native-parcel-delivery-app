@@ -15,7 +15,16 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { IPicture } from 'types';
-import { Box, Loading, StyledImage, StyledText, FAB, Icon, UploadIndicator } from 'components';
+import {
+  Box,
+  Loading,
+  StyledImage,
+  StyledText,
+  FAB,
+  Icon,
+  UploadIndicator,
+  PinchableImage,
+} from 'components';
 
 const Gallery = () => {
   const [uploading, setUploading] = useState<boolean>(false);
@@ -105,16 +114,16 @@ const Gallery = () => {
   const handleUpload = async () => {
     const selectedPicturesArr = Array.from(selectedPictures);
     setUploading(true);
-    for (let i = 0; i < selectedPicturesArr.length; i++) {
-      const pic = selectedPicturesArr[i];
-      const { fileName, uri } = pic;
-      const ref = storage().ref(`images/${fileName}`);
-      const task = ref.putFile(uri);
-      task.on('state_changed', snapshot => {
-        const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000;
-        setUploadProgress(progress);
-      });
-      try {
+    try {
+      for (let i = 0; i < selectedPicturesArr.length; i++) {
+        const pic = selectedPicturesArr[i];
+        const { fileName, uri } = pic;
+        const ref = storage().ref(`images/${fileName}`);
+        const task = ref.putFile(uri);
+        task.on('state_changed', snapshot => {
+          const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000;
+          setUploadProgress(progress);
+        });
         const taskSnapshot = await task;
         if (taskSnapshot.state === 'success') {
           const preUploadedPics = await AsyncStorage.getItem('uploadedPictures');
@@ -131,13 +140,14 @@ const Gallery = () => {
             await AsyncStorage.setItem('uploadedPictures', uploadedPics);
           }
         }
-      } catch (error) {
-        console.warn(error);
       }
+    } catch (error) {
+      console.warn(error);
+    } finally {
+      setSelectedPictures(new Set());
+      setUploading(false);
+      Alert.alert('Success!', 'Your pictures has been uploaded to Firebase Cloud Storage!');
     }
-    setSelectedPictures(new Set());
-    setUploading(false);
-    Alert.alert('Success!', 'Your pictures has been uploaded to Firebase Cloud Storage!');
   };
 
   const renderPicture = (pic: IPicture) => {
@@ -173,11 +183,7 @@ const Gallery = () => {
     return (
       <Box {...{ width, height }} justifyContent="center" backgroundColor="black">
         <Box {...{ width }} height={400}>
-          <StyledImage
-            source={{
-              uri: pic.uri,
-            }}
-          />
+          <PinchableImage source={{ uri: pic.uri }} />
         </Box>
       </Box>
     );
@@ -245,7 +251,7 @@ const Gallery = () => {
                 </Box>
               )}
               <FlatList
-                refreshControl={renderRefreshControl()}
+                refreshControl={!previewMode ? renderRefreshControl() : undefined}
                 data={pictures}
                 numColumns={picNum}
                 horizontal={previewMode}

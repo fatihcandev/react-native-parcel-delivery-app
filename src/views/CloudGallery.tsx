@@ -26,7 +26,6 @@ const Gallery = () => {
         const uploadedPictures = await AsyncStorage.getItem('uploadedPictures');
         if (uploadedPictures !== null) {
           const uploadedPicsJson = JSON.parse(uploadedPictures);
-          console.log('cloud pics', uploadedPicsJson);
           for (const pic in uploadedPicsJson) {
             const fileName = uploadedPicsJson[pic].fileName;
             const ref = storage().ref(`images/${fileName}`);
@@ -41,14 +40,15 @@ const Gallery = () => {
               ]);
             }
           }
-          setRefreshing(false);
-          setFetchingPics(false);
         } else {
           setRefreshing(false);
           setFetchingPics(false);
         }
       } catch (error) {
         console.warn(error);
+      } finally {
+        setRefreshing(false);
+        setFetchingPics(false);
       }
     }
     if (refreshing) {

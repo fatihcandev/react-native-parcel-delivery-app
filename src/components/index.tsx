@@ -6,6 +6,7 @@ export { default as StyledText } from './StyledText';
 export { default as StyledInput } from './StyledInput';
 export { default as StyledButton } from './StyledButton';
 export { default as StyledImage } from './StyledImage';
+export { default as PinchableImage } from './PinchableImage';
 export { default as FAB } from './FAB';
 export { default as Loading } from './Loading';
 export { default as UploadIndicator } from './UploadIndicator';
