@@ -11,8 +11,8 @@ interface ILayoutProps {
 
 const Layout: React.FC<ILayoutProps> = ({ headingBig, headingSmall, children }) => {
   return (
-    <Box flex={1} paddingHorizontal="l" paddingVertical="xl" backgroundColor="white">
-      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white' }} showsVerticalScrollIndicator={false}>
+      <Box flex={1} paddingHorizontal="l" paddingVertical="xl">
         {headingBig && (
           <StyledText variant="h2" marginBottom="m">
             {headingBig}
@@ -24,8 +24,8 @@ const Layout: React.FC<ILayoutProps> = ({ headingBig, headingSmall, children }) 
           </StyledText>
         )}
         {children}
-      </ScrollView>
-    </Box>
+      </Box>
+    </ScrollView>
   );
 };
 
