@@ -22,7 +22,6 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
         const confirmationResult = await auth().signInWithPhoneNumber(phoneNumber);
         if (confirmationResult) {
           setLoading(false);
-          navigation.navigate('LoginVerifyCode');
           dispatch({
             type: VERIFY_PHONE_NUMBER,
             data: {
@@ -30,12 +29,12 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
               confirmationResult,
             },
           });
+          navigation.navigate('LoginVerifyCode');
         }
       } catch (error) {
         Alert.alert('Error', error.message);
+        setLoading(false);
       }
-    } else {
-      setLoading(false);
     }
   };
 

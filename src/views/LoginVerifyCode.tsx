@@ -38,6 +38,7 @@ const LoginVerifyCode = () => {
       await confirmationResult?.confirm(code);
     } catch (error) {
       Alert.alert('Error', error.message);
+      setLoading(false);
     } finally {
       setLoading(false);
       setCode('');
@@ -88,6 +89,7 @@ const LoginVerifyCode = () => {
         dispatch({
           type: VERIFY_PHONE_NUMBER,
           data: {
+            phoneNumber,
             confirmationResult: confirmationResultNew,
           },
         });
