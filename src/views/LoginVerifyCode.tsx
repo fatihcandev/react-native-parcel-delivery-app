@@ -25,12 +25,12 @@ const LoginVerifyCode = () => {
   const input4 = useRef<TextInput>(null);
   const input5 = useRef<TextInput>(null);
   const input6 = useRef<TextInput>(null);
-  const input1Current = input1.current;
-  const input2Current = input2.current;
-  const input3Current = input3.current;
-  const input4Current = input4.current;
-  const input5Current = input5.current;
-  const input6Current = input6.current;
+  const input1Ref = input1.current;
+  const input2Ref = input2.current;
+  const input3Ref = input3.current;
+  const input4Ref = input4.current;
+  const input5Ref = input5.current;
+  const input6Ref = input6.current;
 
   const handleVerifyCode = useCallback(async () => {
     setLoading(true);
@@ -47,38 +47,38 @@ const LoginVerifyCode = () => {
 
   useEffect(() => {
     if (code.length === 1) {
-      input1Current?.blur();
-      input2Current?.focus();
+      input1Ref?.blur();
+      input2Ref?.focus();
     }
     if (code.length === 2) {
-      input2Current?.blur();
-      input3Current?.focus();
+      input2Ref?.blur();
+      input3Ref?.focus();
     }
     if (code.length === 3) {
-      input3Current?.blur();
-      input4Current?.focus();
+      input3Ref?.blur();
+      input4Ref?.focus();
     }
     if (code.length === 4) {
-      input4Current?.blur();
-      input5Current?.focus();
+      input4Ref?.blur();
+      input5Ref?.focus();
     }
     if (code.length === 5) {
-      input5Current?.blur();
-      input6Current?.focus();
+      input5Ref?.blur();
+      input6Ref?.focus();
     }
     if (code.length === 6) {
-      input6Current?.blur();
+      input6Ref?.blur();
       handleVerifyCode();
     }
   }, [
     code.length,
     handleVerifyCode,
-    input1Current,
-    input2Current,
-    input3Current,
-    input4Current,
-    input5Current,
-    input6Current,
+    input1Ref,
+    input2Ref,
+    input3Ref,
+    input4Ref,
+    input5Ref,
+    input6Ref,
   ]);
 
   const handleRequestNewCode = async () => {
@@ -103,35 +103,44 @@ const LoginVerifyCode = () => {
 
   const handleFocusChange = (event: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
     let isBackspacePressed = event.nativeEvent.key === 'Backspace';
-
-    if (input6Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 5));
-      input6Current?.blur();
-      input5Current?.focus();
-    }
-    if (input5Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 4));
-      input5Current?.blur();
-      input4Current?.focus();
-    }
-    if (input4Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 3));
-      input4Current?.blur();
-      input3Current?.focus();
-    }
-    if (input3Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 2));
-      input3Current?.blur();
-      input2Current?.focus();
-    }
-    if (input2Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 1));
-      input2Current?.blur();
-      input1Current?.focus();
-    }
-    if (input1Current?.isFocused() && isBackspacePressed) {
-      setCode(c => c.substring(0, 0));
-      input1Current?.blur();
+    if (input6Ref?.isFocused() && isBackspacePressed) {
+      if (code.length > 5) {
+        setCode(c => c.substring(0, 5));
+      } else {
+        input6Ref?.blur();
+        input5Ref?.focus();
+      }
+    } else if (input5Ref?.isFocused() && isBackspacePressed) {
+      if (code.length > 4) {
+        setCode(c => c.substring(0, 4));
+      } else {
+        input5Ref?.blur();
+        input4Ref?.focus();
+      }
+    } else if (input4Ref?.isFocused() && isBackspacePressed) {
+      if (code.length > 3) {
+        setCode(c => c.substring(0, 3));
+      } else {
+        input4Ref?.blur();
+        input3Ref?.focus();
+      }
+    } else if (input3Ref?.isFocused() && isBackspacePressed) {
+      if (code.length > 2) {
+        setCode(c => c.substring(0, 2));
+      } else {
+        input3Ref?.blur();
+        input2Ref?.focus();
+      }
+    } else if (input2Ref?.isFocused() && isBackspacePressed) {
+      if (code.length > 1) {
+        setCode(c => c.substring(0, 1));
+      } else {
+        input2Ref?.blur();
+        input1Ref?.focus();
+      }
+    } else if (input1Ref?.isFocused() && isBackspacePressed) {
+      setCode('');
+      input1Ref?.blur();
     }
   };
 
