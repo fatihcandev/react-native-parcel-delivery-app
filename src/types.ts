@@ -82,6 +82,7 @@ export enum IconName {
   upload = 'upload',
   check = 'check',
   trash = 'trash',
+  search = 'search',
 }
 
 export enum AssetName {

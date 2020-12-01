@@ -28,6 +28,7 @@ const StyledButton: React.FC<IStyledButtonProps> = ({
         justifyContent="center"
         alignItems="center"
         borderRadius="s"
+        opacity={disabled ? 0.5 : 1}
       >
         {loading ? (
           <ActivityIndicator color="white" size="small" />

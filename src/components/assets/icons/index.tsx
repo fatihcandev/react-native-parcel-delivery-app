@@ -18,3 +18,4 @@ export { default as Gallery } from './Gallery';
 export { default as Upload } from './Upload';
 export { default as Check } from './Check';
 export { default as Trash } from './Trash';
+export { default as Search } from './Search';

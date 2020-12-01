@@ -52,6 +52,8 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.Check {...rest} />;
     case IconName.trash:
       return <Icons.Trash {...rest} />;
+    case IconName.search:
+      return <Icons.Search {...rest} />;
     default:
       return null;
   }

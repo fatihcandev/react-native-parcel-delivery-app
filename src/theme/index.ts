@@ -42,6 +42,12 @@ const theme = createTheme({
       lineHeight: 24,
       color: 'black',
     },
+    h3Light: {
+      fontFamily: 'Poppins-Medium',
+      fontSize: 16,
+      lineHeight: 24,
+      color: 'black',
+    },
     bodyPrimary: {
       fontFamily: 'Poppins-Medium',
       fontSize: 12,

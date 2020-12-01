@@ -4,6 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
     "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",
@@ -14,6 +15,7 @@
     "paths": {
       "*": ["src/*"],
       "@assets/*": ["src/assets/*"],
+      "@data": ["src/data"],
       "@context": ["src/context"],
       "@utils": ["src/utils"],
       "@components": ["src/components"],
