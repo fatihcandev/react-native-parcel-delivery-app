@@ -6,7 +6,7 @@ import Animated, { Easing, interpolate, useValue } from 'react-native-reanimated
 import auth from '@react-native-firebase/auth';
 
 import { MainRoutes } from 'types';
-import myParcelsData from 'data/myParcelsData';
+import { myParcelsData } from 'data';
 import {
   Box,
   Icon,

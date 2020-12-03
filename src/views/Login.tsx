@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import auth from '@react-native-firebase/auth';
-import { CallingCodePicker } from '@digieggs/react-native-calling-code-picker';
+import { CallingCodePicker } from '@digieggs/rn-country-code-picker';
 
 import theme from 'theme';
 import { AppContext, VERIFY_PHONE_NUMBER } from 'context';
