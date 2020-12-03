@@ -39,9 +39,6 @@ const LoginVerifyCode = () => {
     } catch (error) {
       Alert.alert('Error', error.message);
       setLoading(false);
-    } finally {
-      setLoading(false);
-      setCode('');
     }
   }, [code, confirmationResult]);
 
@@ -68,18 +65,14 @@ const LoginVerifyCode = () => {
     }
     if (code.length === 6) {
       input6Ref?.blur();
+    }
+  }, [code.length, input1Ref, input2Ref, input3Ref, input4Ref, input5Ref, input6Ref]);
+
+  useEffect(() => {
+    if (code.length === 6) {
       handleVerifyCode();
     }
-  }, [
-    code.length,
-    handleVerifyCode,
-    input1Ref,
-    input2Ref,
-    input3Ref,
-    input4Ref,
-    input5Ref,
-    input6Ref,
-  ]);
+  }, [code.length, handleVerifyCode]);
 
   const handleRequestNewCode = async () => {
     setLoading(true);

@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import auth from '@react-native-firebase/auth';
+import { CallingCodePicker } from '@digieggs/react-native-calling-code-picker';
 
 import theme from 'theme';
 import { AppContext, VERIFY_PHONE_NUMBER } from 'context';
 import { validatePhoneNumber } from 'utils';
 import { AuthRoutes, StackNavigationProps } from 'types';
 import { Asset, Box, Icon, StyledButton, StyledText } from 'components';
-import { CallingCodePicker } from '@digieggs/react-native-calling-code-picker';
 
 const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -87,6 +87,9 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
               selectedValue={selectedCallingCode}
               onValueChange={v => setSelectedCallingCode(v)}
               togglerContainerStyle={styles.callingCodeToggler}
+              pickerItemLabelStyle={styles.callingCodePickerFont}
+              togglerLabelStyle={styles.callingCodePickerFont}
+              searchInputStyle={styles.callingCodePickerFont}
             />
           </Box>
           {!(isValid === undefined) && !isValid && (
@@ -118,6 +121,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     bottom: 20,
+  },
+  callingCodePickerFont: {
+    fontFamily: 'Poppins-Medium',
   },
 });
 
