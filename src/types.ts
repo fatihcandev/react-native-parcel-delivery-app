@@ -83,6 +83,11 @@ export enum IconName {
   check = 'check',
   trash = 'trash',
   search = 'search',
+  play = 'play',
+  pause = 'pause',
+  stop = 'stop',
+  flash = 'flash',
+  flashOff = 'flashOff',
 }
 
 export enum AssetName {
@@ -100,4 +105,10 @@ export enum AssetName {
   mapRoute = 'mapRoute',
   phone = 'phone',
   otpSent = 'otpSent',
+}
+
+export enum RecordingStatus {
+  RECORDING,
+  PAUSED,
+  STOPPED,
 }

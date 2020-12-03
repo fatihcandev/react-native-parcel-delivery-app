@@ -54,6 +54,16 @@ const Icon: React.FC<IIconProps> = ({ name, ...rest }) => {
       return <Icons.Trash {...rest} />;
     case IconName.search:
       return <Icons.Search {...rest} />;
+    case IconName.play:
+      return <Icons.Play {...rest} />;
+    case IconName.pause:
+      return <Icons.Pause {...rest} />;
+    case IconName.stop:
+      return <Icons.Stop {...rest} />;
+    case IconName.flash:
+      return <Icons.Flash {...rest} />;
+    case IconName.flashOff:
+      return <Icons.FlashOff {...rest} />;
     default:
       return null;
   }

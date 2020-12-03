@@ -19,3 +19,8 @@ export { default as Upload } from './Upload';
 export { default as Check } from './Check';
 export { default as Trash } from './Trash';
 export { default as Search } from './Search';
+export { default as Play } from './Play';
+export { default as Pause } from './Pause';
+export { default as Stop } from './Stop';
+export { default as Flash } from './Flash';
+export { default as FlashOff } from './FlashOff';
