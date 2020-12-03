@@ -66,6 +66,12 @@ const theme = createTheme({
       lineHeight: 15,
       color: 'black',
     },
+    tab: {
+      fontFamily: 'Poppins-Medium',
+      fontSize: 14,
+      lineHeight: 18,
+      color: 'black',
+    },
     link: {
       fontFamily: 'Poppins-Bold',
       fontSize: 9,
