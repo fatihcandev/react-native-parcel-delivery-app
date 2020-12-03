@@ -7,16 +7,14 @@ import theme from 'theme';
 import { AppContext, VERIFY_PHONE_NUMBER } from 'context';
 import { validatePhoneNumber } from 'utils';
 import { AuthRoutes, StackNavigationProps } from 'types';
-import { countries } from 'data';
-import { Asset, Box, Icon, StyledButton, StyledText, CallingCodePicker } from 'components';
+import { Asset, Box, Icon, StyledButton, StyledText } from 'components';
+import { CallingCodePicker } from '@digieggs/react-native-calling-code-picker';
 
 const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
-  const [isPhoneInputFocused, setIsPhoneInputFocused] = useState<boolean>(false);
-  const [selectedCallingCode, setSelectedCallingCode] = useState<string>('');
-  const [selectedCountryCode, setSelectedCountryCode] = useState<string>('');
+  const [selectedCallingCode, setSelectedCallingCode] = useState<string>('90');
   const { dispatch } = useContext(AppContext);
   let isButtonDisabled = loading || !isValid || !selectedCallingCode;
   let phoneNumberWithCode = `+${selectedCallingCode}`.concat(phoneNumber);
@@ -52,21 +50,6 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
     }
   }, [phoneNumber]);
 
-  useEffect(() => {
-    if (countries) {
-      setSelectedCallingCode(countries[0].callingCodes[0]);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (selectedCallingCode) {
-      const selectedCountry = countries.find(
-        country => country.callingCodes[0] === selectedCallingCode,
-      );
-      setSelectedCountryCode(selectedCountry?.alpha2Code?.toLowerCase()!);
-    }
-  }, [selectedCallingCode]);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Box flex={1} justifyContent="center" paddingHorizontal="l" paddingVertical="xl">
@@ -79,8 +62,6 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
         <Box marginBottom="m">
           <Box position="relative">
             <TextInput
-              onFocus={() => setIsPhoneInputFocused(true)}
-              onBlur={() => setIsPhoneInputFocused(false)}
               textAlignVertical="bottom"
               editable={!loading}
               maxLength={10}
@@ -103,8 +84,9 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
               </Box>
             )}
             <CallingCodePicker
-              {...{ selectedCallingCode, selectedCountryCode, isPhoneInputFocused }}
-              onChange={v => setSelectedCallingCode(v)}
+              selectedValue={selectedCallingCode}
+              onValueChange={v => setSelectedCallingCode(v)}
+              togglerContainerStyle={styles.callingCodeToggler}
             />
           </Box>
           {!(isValid === undefined) && !isValid && (
@@ -116,8 +98,8 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
         <StyledButton
           label="Continue"
           onPress={handleSendCode}
-          {...{ loading }}
           disabled={isButtonDisabled}
+          {...{ loading }}
         />
       </Box>
     </SafeAreaView>
@@ -130,7 +112,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Poppins-Medium',
     borderBottomWidth: 1,
-    paddingLeft: 110,
+    paddingLeft: 120,
+  },
+  callingCodeToggler: {
+    position: 'absolute',
+    left: 0,
+    bottom: 20,
   },
 });
 
