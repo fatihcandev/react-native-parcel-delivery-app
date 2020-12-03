@@ -32,6 +32,7 @@ const BottomTabNavigator = () => {
           height: 65,
           backgroundColor: theme.colors.white,
         },
+        keyboardHidesTabBar: true,
       }}
     >
       <BottomTab.Screen

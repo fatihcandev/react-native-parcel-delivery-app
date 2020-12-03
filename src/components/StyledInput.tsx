@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StyleProp, TextStyle } from 'react-native';
 
 import Box from './Box';
 import Input from './Input';
@@ -10,6 +11,8 @@ interface IStyledInputProps {
   placeholder?: string;
   value: string;
   onChangeText: (v: string) => void;
+  keyboardType?: 'default' | 'email-address' | 'phone-pad';
+  style?: StyleProp<TextStyle>;
 }
 
 const StyledInput: React.FC<IStyledInputProps> = ({
@@ -18,6 +21,8 @@ const StyledInput: React.FC<IStyledInputProps> = ({
   placeholder,
   value,
   onChangeText,
+  keyboardType = 'default',
+  style,
 }) => {
   const [focused, setFocused] = useState<boolean>(false);
   let isSearch = type === 'search';
@@ -33,7 +38,7 @@ const StyledInput: React.FC<IStyledInputProps> = ({
   return (
     <Box>
       {!isSearch && (
-        <StyledText variant="bodyPrimary" color={focused ? 'black' : 'greyLight'} marginBottom="s">
+        <StyledText variant="bodyPrimary" color={focused ? 'black' : 'grey'} marginBottom="s">
           {label}
         </StyledText>
       )}
@@ -47,7 +52,7 @@ const StyledInput: React.FC<IStyledInputProps> = ({
         borderColor={focused ? 'black' : 'grey'}
         borderRadius="s"
         placeholderTextColor="grey"
-        {...{ placeholder, value, onChangeText, onFocus, onBlur }}
+        {...{ placeholder, value, onChangeText, onFocus, onBlur, style, keyboardType }}
       />
     </Box>
   );

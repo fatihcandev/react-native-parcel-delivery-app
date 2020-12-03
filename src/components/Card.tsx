@@ -1,22 +1,27 @@
-import { layout, LayoutProps, spacing, SpacingProps, useRestyle } from '@shopify/restyle';
+import {
+  border,
+  BorderProps,
+  layout,
+  LayoutProps,
+  spacing,
+  SpacingProps,
+  useRestyle,
+} from '@shopify/restyle';
 import React from 'react';
 
 import { Theme } from 'theme';
 import Box from './Box';
 
-type ICardProps = LayoutProps<Theme> & SpacingProps<Theme>;
+type ICardProps = LayoutProps<Theme> & SpacingProps<Theme> & BorderProps<Theme>;
 
 const Card: React.FC<ICardProps> = ({ children, ...restyleProps }) => {
-  const props = useRestyle([layout, spacing], restyleProps);
+  const props = useRestyle([layout, spacing, border], restyleProps);
   return (
     <Box
       padding="m"
       backgroundColor="white"
       borderRadius="s"
-      shadowColor="shadow"
-      shadowRadius={10}
-      elevation={3}
-      borderColor="greyLighter"
+      borderColor="greyLight"
       borderWidth={1}
       {...props}
     >

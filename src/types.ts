@@ -34,6 +34,12 @@ export type SendParcelRoutes = {
   Checkout: {
     parcelSize: string;
     deliveryMethod: string;
+    recipientInfo: {
+      name: string;
+      email: string;
+      phoneNumber: string;
+      address: string;
+    };
   };
 };
 

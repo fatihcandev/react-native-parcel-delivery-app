@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 
 import Asset from './Asset';
 import Box from './Box';
@@ -7,9 +8,15 @@ import StyledText from './StyledText';
 
 interface IParcelDeliveryMethodCardProps {
   method: 'doorToParcelCenter' | 'doorToDoor';
+  onPress: (method: string) => void;
+  isSelected: boolean;
 }
 
-const ParcelDeliveryMethodCard: React.FC<IParcelDeliveryMethodCardProps> = ({ method }) => {
+const ParcelDeliveryMethodCard: React.FC<IParcelDeliveryMethodCardProps> = ({
+  method,
+  onPress,
+  isSelected,
+}) => {
   const getAsset = () => {
     switch (method) {
       case 'doorToParcelCenter':
@@ -44,21 +51,28 @@ const ParcelDeliveryMethodCard: React.FC<IParcelDeliveryMethodCardProps> = ({ me
   };
 
   return (
-    <Card height={115} marginBottom="m">
-      <Box flexDirection="row">
-        <Box marginRight="xl" justifyContent="center">
-          <Asset name={getAsset()} width={65} height={33} />
+    <TouchableWithoutFeedback onPress={() => onPress(method)}>
+      <Card
+        height={115}
+        marginBottom="m"
+        borderColor={isSelected ? 'yellowDark' : 'greyLight'}
+        borderWidth={isSelected ? 2 : 1}
+      >
+        <Box flexDirection="row">
+          <Box marginRight="xl" justifyContent="center">
+            <Asset name={getAsset()} width={65} height={33} />
+          </Box>
+          <Box>
+            <StyledText variant="bodyPrimaryBold" marginBottom="s">
+              {getTitle()}
+            </StyledText>
+            <StyledText variant="bodySecondary" color="grey">
+              {getDeliveryTime()}
+            </StyledText>
+          </Box>
         </Box>
-        <Box>
-          <StyledText variant="bodyPrimaryBold" marginBottom="s">
-            {getTitle()}
-          </StyledText>
-          <StyledText variant="bodySecondary" color="grey">
-            {getDeliveryTime()}
-          </StyledText>
-        </Box>
-      </Box>
-    </Card>
+      </Card>
+    </TouchableWithoutFeedback>
   );
 };
 
