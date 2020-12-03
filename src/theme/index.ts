@@ -84,7 +84,7 @@ const theme = createTheme({
     s: 4,
     l: 16,
     cameraShutter: 37.5,
-    cameraShutterRedDot: 18.75,
+    cameraShutterRedDot: 10,
     parcelStep: 22,
     FAB: 25,
   },
