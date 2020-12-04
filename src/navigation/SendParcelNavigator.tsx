@@ -1,7 +1,8 @@
 import React from 'react';
-import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { SendParcelRoutes } from 'types';
+import { navHorizontalTransitionConfig } from '@constants';
 import { Checkout, DeliveryMethod, ParcelSize } from 'views/SendParcel';
 
 const SendParcelStack = createStackNavigator<SendParcelRoutes>();
@@ -10,7 +11,7 @@ const SendParcelNavigator = () => {
   return (
     <SendParcelStack.Navigator
       headerMode="screen"
-      screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+      screenOptions={{ ...navHorizontalTransitionConfig }}
     >
       <SendParcelStack.Screen
         name="ParcelSize"

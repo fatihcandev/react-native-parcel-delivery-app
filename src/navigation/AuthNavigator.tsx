@@ -4,6 +4,7 @@ import { useTheme } from '@shopify/restyle';
 
 import { Theme } from 'theme';
 import { AuthRoutes } from 'types';
+import { navHorizontalTransitionConfig } from '@constants';
 import { Login, LoginVerifyCode } from 'views';
 
 const AuthStack = createStackNavigator<AuthRoutes>();
@@ -12,7 +13,13 @@ const AuthNavigator = () => {
   const theme = useTheme<Theme>();
 
   return (
-    <AuthStack.Navigator headerMode="screen" initialRouteName="Login">
+    <AuthStack.Navigator
+      headerMode="screen"
+      initialRouteName="Login"
+      screenOptions={{
+        ...navHorizontalTransitionConfig,
+      }}
+    >
       <AuthStack.Screen
         name="Login"
         component={Login}
