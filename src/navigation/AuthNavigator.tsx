@@ -1,13 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useTheme } from '@shopify/restyle';
 
+import { Theme } from 'theme';
 import { AuthRoutes } from 'types';
 import { Login, LoginVerifyCode } from 'views';
-import theme from 'theme';
 
 const AuthStack = createStackNavigator<AuthRoutes>();
 
 const AuthNavigator = () => {
+  const theme = useTheme<Theme>();
+
   return (
     <AuthStack.Navigator headerMode="screen" initialRouteName="Login">
       <AuthStack.Screen

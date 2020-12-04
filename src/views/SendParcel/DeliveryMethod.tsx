@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useTheme } from '@shopify/restyle';
 
-import theme from 'theme';
+import { Theme } from 'theme';
 import { SendParcelRoutes, StackNavigationProps } from 'types';
 import {
   Layout,
@@ -19,6 +20,7 @@ const DeliveryMethod = ({
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [deliveryMethod, setDeliveryMethod] = useState<string>('');
+  const theme = useTheme<Theme>();
   const { parcelSize } = route.params;
 
   const getDeliveryMethod = () => {

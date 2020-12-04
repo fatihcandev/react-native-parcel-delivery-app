@@ -1,7 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
-import theme from 'theme';
+import { useTheme } from '@shopify/restyle';
 
+import { Theme } from 'theme';
 import Box from './Box';
 
 interface ILoadingProps {
@@ -9,7 +10,9 @@ interface ILoadingProps {
 }
 
 const Loading: React.FC<ILoadingProps> = ({ fullScreen }) => {
+  const theme = useTheme<Theme>();
   const { width, height } = Dimensions.get('window');
+
   return (
     <Box
       width={fullScreen ? width : undefined}

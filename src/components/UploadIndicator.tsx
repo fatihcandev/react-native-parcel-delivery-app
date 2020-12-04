@@ -1,7 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
+import { useTheme } from '@shopify/restyle';
 
-import theme from 'theme';
+import { Theme } from 'theme';
 import Box from './Box';
 import ProgressBar from './ProgressBar';
 import StyledText from './StyledText';
@@ -11,7 +12,9 @@ interface IUploadIndicatorProps {
 }
 
 const UploadIndicator: React.FC<IUploadIndicatorProps> = ({ progress }) => {
+  const theme = useTheme<Theme>();
   const { width } = Dimensions.get('window');
+
   return (
     <Box
       style={StyleSheet.absoluteFill}

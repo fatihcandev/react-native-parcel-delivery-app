@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTheme } from '@shopify/restyle';
 
+import { Theme } from 'theme';
 import { BottomTabRoutes } from 'types';
-import theme from 'theme';
 import { useNavigateFromNotification } from 'utils';
 import { Icon } from 'components';
 import { MyParcels, ParcelCenter } from 'views';
@@ -13,6 +14,7 @@ const BottomTab = createBottomTabNavigator<BottomTabRoutes>();
 
 const BottomTabNavigator = () => {
   const navigateFromNotification = useNavigateFromNotification();
+  const theme = useTheme<Theme>();
 
   useEffect(() => {
     navigateFromNotification();

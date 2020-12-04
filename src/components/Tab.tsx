@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleProp, ViewStyle, TextStyle, Pressable } from 'react-native';
+import { useTheme } from '@shopify/restyle';
 
-import theme from 'theme';
+import { Theme } from 'theme';
 import Box from './Box';
 import Icon from './Icon';
 import StyledText from './StyledText';
@@ -23,6 +24,8 @@ const Tab: React.FC<ITabProps> = ({
   containerStyle,
   labelStyle,
 }) => {
+  const theme = useTheme<Theme>();
+
   return (
     <Pressable
       {...{ onPress }}

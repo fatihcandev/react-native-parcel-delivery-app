@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
+import { useTheme } from '@shopify/restyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import auth from '@react-native-firebase/auth';
 import { CallingCodePicker } from '@digieggs/rn-country-code-picker';
 
-import theme from 'theme';
+import { Theme } from 'theme';
 import { AppContext, VERIFY_PHONE_NUMBER } from 'context';
 import { validatePhoneNumber } from 'utils';
 import { AuthRoutes, StackNavigationProps } from 'types';
@@ -16,6 +17,7 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
   const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
   const [selectedCallingCode, setSelectedCallingCode] = useState<string>('90');
   const { dispatch } = useContext(AppContext);
+  const theme = useTheme<Theme>();
   let isButtonDisabled = loading || !isValid || !selectedCallingCode;
   let phoneNumberWithCode = `+${selectedCallingCode}`.concat(phoneNumber);
 
