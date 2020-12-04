@@ -36,7 +36,7 @@ const MyParcelCard: React.FC<IMyParcelCardProps> = ({
   };
 
   return (
-    <Card height={174} marginBottom="m">
+    <Card marginBottom="m">
       <Box flexDirection="row" justifyContent="space-between" alignItems="center" marginBottom="l">
         <StyledText variant="bodyPrimary">{id}</StyledText>
         <Asset name={company} width={70} height={20} />

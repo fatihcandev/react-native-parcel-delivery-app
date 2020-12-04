@@ -27,3 +27,4 @@ export { default as AddPaymentMethod } from './AddPaymentMethod';
 export { default as CheckoutSummary } from './CheckoutSummary';
 export { default as PaymentCard } from './PaymentCard';
 export { default as InputInvalidMsg } from './InputInvalidMsg';
+export { default as ParcelCenterCard } from './ParcelCenterCard';

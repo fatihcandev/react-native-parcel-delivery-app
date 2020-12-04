@@ -1,6 +1,6 @@
 import { IParcelDetails } from 'types';
 
-export default [
+const myParcelsData: IParcelDetails[] = [
   {
     id: '00359007738060313786',
     company: 'amazon',
@@ -75,4 +75,6 @@ export default [
     lastUpdate: '2 days ago',
     progress: 100,
   },
-] as IParcelDetails[];
+];
+
+export default myParcelsData;

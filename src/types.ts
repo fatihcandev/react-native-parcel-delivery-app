@@ -71,6 +71,14 @@ export interface IParcelDetails {
   progress: number;
 }
 
+export interface IParcelCenterDetails {
+  id: string;
+  availability: string;
+  addressFirstLine: string;
+  addressSecondLine: string;
+  occupancy: number;
+}
+
 export interface IPicture {
   fileName: string;
   uri: string;
