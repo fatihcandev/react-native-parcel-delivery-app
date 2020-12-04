@@ -67,7 +67,6 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ color }) => <Icon name="gallery" {...{ color }} />,
           tabBarLabel: 'Gallery',
-          tabBarVisible: false,
         }}
       />
     </BottomTab.Navigator>

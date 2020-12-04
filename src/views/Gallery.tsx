@@ -212,69 +212,61 @@ const Gallery = () => {
           </SafeAreaView>
         ) : (
           <SafeAreaView style={{ flex: 1, position: 'relative' }}>
-            <>
-              {!previewMode && (
-                <Box
-                  height={75}
-                  padding="m"
-                  backgroundColor="yellowDark"
-                  flexDirection="row"
-                  alignItems="center"
-                  elevation={4}
-                >
-                  <TouchableOpacity onPress={() => navigator.goBack()}>
-                    <Box marginRight="s">
-                      <Icon name="arrowLeft" color="black" />
-                    </Box>
-                  </TouchableOpacity>
-                  <StyledText variant="h3">Gallery</StyledText>
-                  <Box flex={1} flexDirection="row" justifyContent="flex-end">
-                    {showPicMenu && (
-                      <TouchableOpacity onPress={handleUpload}>
-                        <Box alignItems="center" marginRight="m">
-                          <Box marginBottom="s">
-                            <Icon name="upload" color="black" />
-                          </Box>
-                          <StyledText variant="bodySecondary">Upload to cloud</StyledText>
-                        </Box>
-                      </TouchableOpacity>
-                    )}
-                    <TouchableOpacity onPress={() => navigator.navigate('CloudGallery')}>
-                      <Box alignItems="center">
+            {!previewMode && (
+              <Box
+                height={75}
+                padding="m"
+                backgroundColor="yellowDark"
+                flexDirection="row"
+                alignItems="center"
+                elevation={4}
+              >
+                <Box flex={1} flexDirection="row" justifyContent="flex-end">
+                  {showPicMenu && (
+                    <TouchableOpacity onPress={handleUpload}>
+                      <Box alignItems="center" marginRight="m">
                         <Box marginBottom="s">
-                          <Icon name="gallery" color="black" />
+                          <Icon name="upload" color="black" />
                         </Box>
-                        <StyledText variant="bodySecondary">Cloud photos</StyledText>
+                        <StyledText variant="bodySecondary">Upload to cloud</StyledText>
                       </Box>
                     </TouchableOpacity>
-                  </Box>
-                </Box>
-              )}
-              <FlatList
-                refreshControl={!previewMode ? renderRefreshControl() : undefined}
-                data={pictures}
-                numColumns={picNum}
-                horizontal={previewMode}
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}
-                snapToInterval={previewMode ? width : undefined}
-                renderItem={({ item }) =>
-                  previewMode ? renderPreviewPicture(item) : renderPicture(item)
-                }
-                key={picNum}
-                keyExtractor={(_, index) => index.toString()}
-              />
-              {previewMode && (
-                <Box style={StyleSheet.absoluteFill}>
-                  <TouchableOpacity onPress={togglePreviewMode}>
-                    <Box padding="m">
-                      <Icon name="arrowLeft" color="white" />
+                  )}
+                  <TouchableOpacity onPress={() => navigator.navigate('CloudGallery')}>
+                    <Box alignItems="center">
+                      <Box marginBottom="s">
+                        <Icon name="gallery" color="black" />
+                      </Box>
+                      <StyledText variant="bodySecondary">Cloud photos</StyledText>
                     </Box>
                   </TouchableOpacity>
                 </Box>
-              )}
-              {uploading && <UploadIndicator progress={uploadProgress} />}
-            </>
+              </Box>
+            )}
+            <FlatList
+              refreshControl={!previewMode ? renderRefreshControl() : undefined}
+              data={pictures}
+              numColumns={picNum}
+              horizontal={previewMode}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              snapToInterval={previewMode ? width : undefined}
+              renderItem={({ item }) =>
+                previewMode ? renderPreviewPicture(item) : renderPicture(item)
+              }
+              key={picNum}
+              keyExtractor={(_, index) => index.toString()}
+            />
+            {previewMode && (
+              <Box style={StyleSheet.absoluteFill}>
+                <TouchableOpacity onPress={togglePreviewMode}>
+                  <Box padding="m">
+                    <Icon name="arrowLeft" color="white" />
+                  </Box>
+                </TouchableOpacity>
+              </Box>
+            )}
+            {uploading && <UploadIndicator progress={uploadProgress} />}
           </SafeAreaView>
         )
       ) : (
