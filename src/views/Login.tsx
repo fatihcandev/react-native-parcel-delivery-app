@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,10 +14,10 @@ import { Asset, Box, Icon, StyledButton, StyledText } from 'components';
 const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
   const [selectedCallingCode, setSelectedCallingCode] = useState<string>('90');
   const { dispatch } = useContext(AppContext);
   const theme = useTheme<Theme>();
+  const isValid = phoneNumber.length > 0 ? validatePhoneNumber(phoneNumber) : undefined;
   let isButtonDisabled = loading || !isValid || !selectedCallingCode;
   let phoneNumberWithCode = `+${selectedCallingCode}`.concat(phoneNumber);
 
@@ -43,14 +43,6 @@ const Login = ({ navigation }: StackNavigationProps<AuthRoutes, 'Login'>) => {
       }
     }
   };
-
-  useEffect(() => {
-    if (phoneNumber.length > 0) {
-      setIsValid(validatePhoneNumber(phoneNumber));
-    } else {
-      setIsValid(undefined);
-    }
-  }, [phoneNumber]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
