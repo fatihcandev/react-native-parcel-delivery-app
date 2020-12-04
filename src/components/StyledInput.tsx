@@ -11,7 +11,10 @@ interface IStyledInputProps {
   placeholder?: string;
   value: string;
   onChangeText: (v: string) => void;
-  keyboardType?: 'default' | 'email-address' | 'phone-pad';
+  keyboardType?: 'default' | 'email-address' | 'phone-pad' | 'numeric';
+  maxLength?: number;
+  onFocus?: () => void;
+  onBlur?: () => void;
   style?: StyleProp<TextStyle>;
 }
 
@@ -22,23 +25,28 @@ const StyledInput: React.FC<IStyledInputProps> = ({
   value,
   onChangeText,
   keyboardType = 'default',
+  maxLength,
+  onFocus,
+  onBlur,
   style,
 }) => {
-  const [focused, setFocused] = useState<boolean>(false);
-  let isSearch = type === 'search';
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const isSearch = type === 'search';
 
-  const onFocus = () => {
-    setFocused(true);
+  const handleFocus = () => {
+    setIsFocused(true);
+    onFocus && onFocus();
   };
 
-  const onBlur = () => {
-    setFocused(false);
+  const handleBlur = () => {
+    setIsFocused(false);
+    onBlur && onBlur();
   };
 
   return (
-    <Box>
+    <Box position="relative">
       {!isSearch && (
-        <StyledText variant="bodyPrimary" color={focused ? 'black' : 'grey'} marginBottom="s">
+        <StyledText variant="bodyPrimary" color={isFocused ? 'black' : 'grey'} marginBottom="s">
           {label}
         </StyledText>
       )}
@@ -46,13 +54,22 @@ const StyledInput: React.FC<IStyledInputProps> = ({
         variant="bodyPrimary"
         height={50}
         backgroundColor="white"
-        padding="m"
+        paddingLeft="m"
         color="black"
         borderWidth={isSearch ? 0 : 1}
-        borderColor={focused ? 'black' : 'grey'}
+        borderColor={isFocused ? 'black' : 'grey'}
         borderRadius="s"
         placeholderTextColor="grey"
-        {...{ placeholder, value, onChangeText, onFocus, onBlur, style, keyboardType }}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        {...{
+          placeholder,
+          value,
+          onChangeText,
+          style,
+          keyboardType,
+          maxLength,
+        }}
       />
     </Box>
   );

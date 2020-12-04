@@ -39,7 +39,7 @@ const DeliveryMethod = ({
       parcelSize,
       deliveryMethod: getDeliveryMethod(),
       recipientInfo: {
-        name,
+        recipientName: name,
         email,
         phoneNumber,
         address,
@@ -85,6 +85,7 @@ const DeliveryMethod = ({
         onChangeText={v => setPhoneNumber(v)}
         type="default"
         keyboardType="phone-pad"
+        maxLength={13}
         style={{ marginBottom: theme.spacing.m }}
       />
       <StyledInput

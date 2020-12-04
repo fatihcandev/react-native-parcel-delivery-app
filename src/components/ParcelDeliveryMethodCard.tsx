@@ -55,7 +55,7 @@ const ParcelDeliveryMethodCard: React.FC<IParcelDeliveryMethodCardProps> = ({
       <Card
         height={115}
         marginBottom="m"
-        borderColor={isSelected ? 'yellowDark' : 'greyLight'}
+        borderColor={isSelected ? 'yellow' : 'greyLight'}
         borderWidth={isSelected ? 2 : 1}
       >
         <Box flexDirection="row">

@@ -34,14 +34,23 @@ export type SendParcelRoutes = {
   Checkout: {
     parcelSize: string;
     deliveryMethod: string;
-    recipientInfo: {
-      name: string;
-      email: string;
-      phoneNumber: string;
-      address: string;
-    };
+    recipientInfo: IRecipientInfo;
   };
 };
+
+export interface IRecipientInfo {
+  recipientName: string;
+  email: string;
+  phoneNumber: string;
+  address: string;
+}
+
+export interface IPaymentMethod {
+  cardNo?: string;
+  name?: string;
+  expDate?: string;
+  cvc?: string;
+}
 
 export type GalleryRoutes = {
   Gallery: undefined;

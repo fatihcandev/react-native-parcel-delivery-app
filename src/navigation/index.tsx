@@ -24,7 +24,9 @@ const Navigator = () => {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(handleAuth);
-    return subscriber;
+    return () => {
+      subscriber();
+    };
   }, [handleAuth]);
 
   return authLoading ? (

@@ -23,3 +23,7 @@ export { default as IconButton } from './IconButton';
 export { default as ActionSheet } from './ActionSheet';
 export { default as ParcelStatusStep } from './ParcelStatusStep';
 export { default as TabBarView } from './TabBarView';
+export { default as AddPaymentMethod } from './AddPaymentMethod';
+export { default as CheckoutSummary } from './CheckoutSummary';
+export { default as PaymentCard } from './PaymentCard';
+export { default as InputInvalidMsg } from './InputInvalidMsg';
