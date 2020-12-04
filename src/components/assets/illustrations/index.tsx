@@ -7,3 +7,6 @@ export { default as MapRoute } from './MapRoute';
 export { default as ParcelCenter } from './ParcelCenter';
 export { default as SmallBox } from './SmallBox';
 export { default as Phone } from './Phone';
+export { default as PaymentCardBgShapeTopRight } from './PaymentCardBgShapeTopRight';
+export { default as PaymentCardBgShapeTopLeft } from './PaymentCardBgShapeTopLeft';
+export { default as PaymentCardBgShapeBottom } from './PaymentCardBgShapeBottom';

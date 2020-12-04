@@ -110,7 +110,9 @@ export enum AssetName {
   mapParcelCenters = 'mapParcelCenters',
   mapRoute = 'mapRoute',
   phone = 'phone',
-  otpSent = 'otpSent',
+  paymentCardBgShapeTopLeft = 'paymentCardBgShapeTopLeft',
+  paymentCardBgShapeTopRight = 'paymentCardBgShapeTopRight',
+  paymentCardBgShapeBottom = 'paymentCardBgShapeBottom',
 }
 
 export enum RecordingStatus {

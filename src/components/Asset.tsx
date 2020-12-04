@@ -38,8 +38,12 @@ const Asset: React.FC<IAssetProps> = ({ name, ...rest }) => {
       return <Illustrations.MapRoute {...rest} />;
     case AssetName.phone:
       return <Illustrations.Phone {...rest} />;
-    case AssetName.mapRoute:
-      return <Illustrations.OTPSent {...rest} />;
+    case AssetName.paymentCardBgShapeTopLeft:
+      return <Illustrations.PaymentCardBgShapeTopLeft />;
+    case AssetName.paymentCardBgShapeTopRight:
+      return <Illustrations.PaymentCardBgShapeTopRight />;
+    case AssetName.paymentCardBgShapeBottom:
+      return <Illustrations.PaymentCardBgShapeBottom />;
     default:
       return null;
   }
